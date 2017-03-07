@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddProperty"></activity>
+        <activity android:name=".Add_BasicInfo" />
+        <activity android:name=".Add_RentalInfo"></activity>
     </application>
 
 </manifest>

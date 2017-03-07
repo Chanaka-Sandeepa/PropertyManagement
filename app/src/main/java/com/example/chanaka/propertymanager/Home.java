@@ -1,5 +1,6 @@
 package com.example.chanaka.propertymanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class Home extends AppCompatActivity {
 
@@ -18,6 +20,15 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Button btnCreate=(Button)findViewById(R.id.btnCreate);
+        btnCreate.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        buttonClicked();
+                    }
+                }
+        );
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,6 +37,12 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+    }
+
+    public void buttonClicked(){
+        startActivity(new Intent(Home.this,Add_BasicInfo.class));
     }
 
     @Override
