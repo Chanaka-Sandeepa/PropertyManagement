@@ -20,11 +20,12 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Set listner to create button
         Button btnCreate=(Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        buttonClicked();
+                        createButtonClicked();
                     }
                 }
         );
@@ -41,7 +42,8 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void buttonClicked(){
+    //Start the activity of adding basic info
+    public void createButtonClicked(){
         startActivity(new Intent(Home.this,Add_BasicInfo.class));
     }
 
