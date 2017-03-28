@@ -1,4 +1,4 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Controllers;
 
 /**
  * Created by chanaka on 3/27/17.

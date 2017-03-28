@@ -1,9 +1,11 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.chanaka.propertymanager.R;
 
 public class ViewTenants extends AppCompatActivity {
 

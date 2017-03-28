@@ -1,7 +1,9 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Controllers;
 
 import android.content.Context;
 import android.widget.Toast;
+
+import com.example.chanaka.propertymanager.Models.Property;
 
 /**
  * Created by chanaka on 3/27/17.

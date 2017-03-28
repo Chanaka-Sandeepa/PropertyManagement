@@ -1,18 +1,17 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.chanaka.propertymanager.R;
 
 public class Home extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,29 @@ public class Home extends AppCompatActivity {
                 }
         );
 
+        //Set listner to view Tenants
         Button btnTenants=(Button)findViewById(R.id.btnTenant);
         btnTenants.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        tenantButtonClicked();
+                    }
+                }
+        );
+
+        //Set listner to view Payments
+        Button btnPayment=(Button)findViewById(R.id.btnPayment);
+        btnPayment.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        paymentButtonClicked();
+                    }
+                }
+        );
+
+        //Set listner to view alerts
+        Button btnAllert=(Button)findViewById(R.id.btnAlerts);
+        btnAllert.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
                         tenantButtonClicked();
@@ -50,7 +70,13 @@ public class Home extends AppCompatActivity {
     //Start the activity of view Tenants
     public void tenantButtonClicked(){
 
-        startActivity(new Intent(Home.this,ViewTenants.class));
+        startActivity(new Intent(Home.this,View_Tenants_info.class));
+
+    }
+    //Start the activity of view Payments
+    public void paymentButtonClicked(){
+
+        startActivity(new Intent(Home.this,Payment_info.class));
 
     }
 

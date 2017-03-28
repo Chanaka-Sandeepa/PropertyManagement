@@ -1,11 +1,13 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Views;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.chanaka.propertymanager.Controllers.Propert_Handler;
+import com.example.chanaka.propertymanager.R;
 
 public class Add_RentalInfo extends AppCompatActivity {
     String[] basic_info =new String[4];

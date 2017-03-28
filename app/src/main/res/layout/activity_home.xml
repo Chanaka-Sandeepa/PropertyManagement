@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.chanaka.propertymanager.Home">
+    tools:context="com.example.chanaka.propertymanager.Views.Home">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,5 +33,24 @@
             android:layout_marginLeft="78dp"
             android:layout_marginStart="78dp"
             android:id="@+id/btnTenant" />
+
+        <Button
+            android:text="Payments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCreate"
+            android:layout_alignLeft="@+id/btnCreate"
+            android:layout_alignStart="@+id/btnCreate"
+            android:layout_marginTop="47dp"
+            android:id="@+id/btnPayment" />
+
+        <Button
+            android:text="Alerts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btnPayment"
+            android:layout_alignLeft="@+id/btnTenant"
+            android:layout_alignStart="@+id/btnTenant"
+            android:id="@+id/btnAlerts" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

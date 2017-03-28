@@ -1,4 +1,4 @@
-package com.example.chanaka.propertymanager;
+package com.example.chanaka.propertymanager.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.example.chanaka.propertymanager.R;
 
 public class Add_BasicInfo extends AppCompatActivity {
 
