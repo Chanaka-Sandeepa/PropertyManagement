@@ -25,9 +25,19 @@ public class ViewTenantsInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_view_tenants_info,container,false);
+        ListView listItems=(ListView)view.findViewById(R.id.lstTenants);
+        populateList(listItems);
         return view;
     }
+    //generate items into the list
+    public void populateList(ListView lv){
+        //dummy tenants to display
+        String[] tenants = {"Jhon","Sam","Max","Jim"};
 
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity().getBaseContext(),android.R.layout.simple_list_item_1,tenants);
+        lv.setAdapter(adapter);
+
+    }
 
 
 }
