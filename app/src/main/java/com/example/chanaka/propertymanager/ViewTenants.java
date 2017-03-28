@@ -20,7 +20,7 @@ public class ViewTenants extends AppCompatActivity {
         //dummy tenants to display
         String[] tenants = {"Jhon","Sam","Max","Jim"};
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, R.layout.activity_view_tenants,tenants);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, R.layout.tenants_list_view,tenants);
         ListView list= (ListView) findViewById(R.id.lstTenants);
         list.setAdapter(adapter);
 

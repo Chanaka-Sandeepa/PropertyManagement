@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class Home extends AppCompatActivity {
         );
 
         Button btnTenants=(Button)findViewById(R.id.btnTenant);
-        btnCreate.setOnClickListener(
+        btnTenants.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
                         tenantButtonClicked();
@@ -50,6 +51,7 @@ public class Home extends AppCompatActivity {
     public void tenantButtonClicked(){
 
         startActivity(new Intent(Home.this,ViewTenants.class));
+
     }
 
     @Override
