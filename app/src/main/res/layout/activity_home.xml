@@ -12,15 +12,26 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Button"
+            android:text="@string/createText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="65dp"
+            android:id="@+id/btnCreate"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="49dp"
-            android:layout_marginStart="49dp"
-            android:layout_marginTop="89dp"
-            android:id="@+id/btnCreate" />
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="@string/tenantsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btnCreate"
+            android:layout_toRightOf="@+id/btnCreate"
+            android:layout_toEndOf="@+id/btnCreate"
+            android:layout_marginLeft="78dp"
+            android:layout_marginStart="78dp"
+            android:id="@+id/btnTenant" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -71,7 +71,7 @@ public class Add_BasicInfo extends AppCompatActivity {
     }
 
     public void buttonClicked(){
-        info=new String[]{number.getText().toString()+street.getText().toString()+city.getText().toString(),footage.getText().toString(),desc.getText().toString(),type};
+        info=new String[]{number.getText().toString()+","+street.getText().toString()+","+city.getText().toString(),footage.getText().toString(),desc.getText().toString(),type};
         Intent intent =new Intent(Add_BasicInfo.this,Add_RentalInfo.class);
         intent.putExtra("info",info);
         startActivity(intent);

@@ -64,7 +64,7 @@
         android:ems="10"
         android:layout_marginRight="17dp"
         android:layout_marginEnd="17dp"
-        android:id="@+id/editText11"
+        android:id="@+id/txtRental"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignParentRight="true"
@@ -75,30 +75,33 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText12"
+        android:id="@+id/txtDeposit"
         android:layout_alignBaseline="@+id/textView6"
         android:layout_alignBottom="@+id/textView6"
-        android:layout_alignLeft="@+id/editText11"
-        android:layout_alignStart="@+id/editText11" />
+        android:layout_alignLeft="@+id/txtRental"
+        android:layout_alignStart="@+id/txtRental" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:layout_below="@+id/editText12"
-        android:layout_alignLeft="@+id/editText12"
-        android:layout_alignStart="@+id/editText12"
+        android:layout_below="@+id/txtDeposit"
+        android:layout_alignLeft="@+id/txtDeposit"
+        android:layout_alignStart="@+id/txtDeposit"
         android:layout_marginTop="31dp"
-        android:id="@+id/editText13" />
+        android:id="@+id/txtDate" />
 
-    <ImageButton
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_below="@+id/editText13"
-        android:layout_alignLeft="@+id/editText13"
-        android:layout_alignStart="@+id/editText13"
-        android:layout_marginTop="30dp"
-        android:id="@+id/imageButton" />
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_below="@+id/txtDate"
+        android:layout_alignLeft="@+id/txtDate"
+        android:layout_alignStart="@+id/txtDate"
+        android:layout_marginTop="39dp"
+        android:id="@+id/txtImage" />
+
 </RelativeLayout>

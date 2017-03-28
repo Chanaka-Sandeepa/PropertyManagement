@@ -12,6 +12,8 @@
     <string name="property_type_txt">Property Type</string>
     <string name="sq_footage__lbl_txt">Sq.footage</string>
     <string name="street_name__lbl_txt">Street Name</string>
+    <string name="tenantsText">Tenants</string>
+    <string name="createText">Create</string>
     <string-array name="types">
         <item>Apartment</item>
         <item>Boarding Place</item>

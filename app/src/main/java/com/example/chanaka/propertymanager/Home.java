@@ -17,8 +17,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         //Set listner to create button
         Button btnCreate=(Button)findViewById(R.id.btnCreate);
@@ -30,21 +29,27 @@ public class Home extends AppCompatActivity {
                 }
         );
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        Button btnTenants=(Button)findViewById(R.id.btnTenant);
+        btnCreate.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        tenantButtonClicked();
+                    }
+                }
+        );
 
     }
 
     //Start the activity of adding basic info
     public void createButtonClicked(){
+
         startActivity(new Intent(Home.this,Add_BasicInfo.class));
+    }
+
+    //Start the activity of view Tenants
+    public void tenantButtonClicked(){
+
+        startActivity(new Intent(Home.this,ViewTenants.class));
     }
 
     @Override

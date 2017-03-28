@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Add_BasicInfo" />
-        <activity android:name=".Add_RentalInfo"></activity>
+        <activity android:name=".Add_RentalInfo" />
+        <activity android:name=".ViewTenants"></activity>
     </application>
 
 </manifest>
