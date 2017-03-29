@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.chanaka.propertymanager.Controllers.Propert_Handler;
+import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.R;
 
 public class Add_RentalInfo extends AppCompatActivity {
@@ -18,12 +18,12 @@ public class Add_RentalInfo extends AppCompatActivity {
     private EditText date;
     private EditText image;
 
-    Propert_Handler propertyHan;
+    Property_Handler propertyHan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__rental_info);
-        propertyHan = new Propert_Handler(getApplicationContext());
+        propertyHan = new Property_Handler(getApplicationContext());
 
         //get inforamtion from the previous basic info activity
         basic_info=getIntent().getExtras().getStringArray("info");

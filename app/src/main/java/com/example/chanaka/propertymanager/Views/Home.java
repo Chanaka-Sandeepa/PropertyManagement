@@ -1,7 +1,11 @@
 package com.example.chanaka.propertymanager.Views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,13 +15,18 @@ import android.widget.Button;
 
 import com.example.chanaka.propertymanager.R;
 
+import static com.example.chanaka.propertymanager.R.drawable.home;
+import static java.security.AccessController.getContext;
+
 public class Home extends AppCompatActivity {
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Context ctx=this.getBaseContext();
 
 
         //setup toolbar
@@ -28,6 +37,10 @@ public class Home extends AppCompatActivity {
 
         //Set listner to create button
         Button btnCreate=(Button)findViewById(R.id.btnCreate);
+        //set image to button
+        Drawable imgCreate = ctx.getResources().getDrawable( R.drawable.home );
+        imgCreate.setBounds( 0, 0, 120, 100 );
+        btnCreate.setCompoundDrawables( null, imgCreate, null, null );
         btnCreate.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -38,6 +51,10 @@ public class Home extends AppCompatActivity {
 
         //Set listner to view Tenants
         Button btnTenants=(Button)findViewById(R.id.btnTenant);
+        //set image to button
+        Drawable imgTenants = ctx.getResources().getDrawable( R.drawable.home );
+        imgTenants.setBounds( 0, 0, 120, 100 );
+        btnCreate.setCompoundDrawables( null, imgTenants, null, null );
         btnTenants.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -48,6 +65,10 @@ public class Home extends AppCompatActivity {
 
         //Set listner to view Payments
         Button btnPayment=(Button)findViewById(R.id.btnPayment);
+        //set image to button
+        Drawable imgPay = ctx.getResources().getDrawable( R.drawable.home );
+        imgPay.setBounds( 0, 0, 120, 100 );
+        btnCreate.setCompoundDrawables( null, imgPay, null, null );
         btnPayment.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -58,6 +79,10 @@ public class Home extends AppCompatActivity {
 
         //Set listner to view alerts
         Button btnAllert=(Button)findViewById(R.id.btnAlerts);
+        //set image to button
+        Drawable imgAlerts = ctx.getResources().getDrawable( R.drawable.home );
+        imgAlerts.setBounds( 0, 0, 120, 100 );
+        btnCreate.setCompoundDrawables( null, imgAlerts, null, null );
         btnAllert.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){

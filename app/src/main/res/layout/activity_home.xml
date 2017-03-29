@@ -65,7 +65,7 @@
         <fragment
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:name="layout.ViewApartments"
+            class="layout.ViewApartments"
             android:layout_marginTop="82dp"
             android:id="@+id/fragment"
             tools:layout="@layout/apartments_list_view"

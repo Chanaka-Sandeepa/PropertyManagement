@@ -5,4 +5,5 @@ package com.example.chanaka.propertymanager.Models;
  */
 
 public class Owner extends User {
+
 }
