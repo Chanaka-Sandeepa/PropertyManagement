@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.chanaka.propertymanager.Views.Home"
-    tools:showIn="@layout/activity_home">
+>
 
     <Button
     android:text="@string/create_btn_txt"
@@ -25,15 +25,34 @@
     android:layout_marginTop="40dp"
     android:id="@+id/btnCreate" />
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
+    <Button
+        android:text="Payments"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_bright"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp"
-        android:id="@+id/toolbar2" />
+        android:layout_below="@+id/btnCreate"
+        android:layout_alignLeft="@+id/btnCreate"
+        android:layout_alignStart="@+id/btnCreate"
+        android:layout_marginTop="36dp"
+        android:id="@+id/btnPayment" />
+
+    <Button
+        android:text="Alerts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnPayment"
+        android:layout_alignRight="@+id/btnTenants"
+        android:layout_alignEnd="@+id/btnTenants"
+        android:id="@+id/btnAlerts" />
+
+    <Button
+        android:text="Tenants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTenants"
+        android:layout_above="@+id/btnPayment"
+        android:layout_toRightOf="@+id/btnPayment"
+        android:layout_toEndOf="@+id/btnPayment"
+        android:layout_marginLeft="54dp"
+        android:layout_marginStart="54dp" />
+
 </RelativeLayout>
