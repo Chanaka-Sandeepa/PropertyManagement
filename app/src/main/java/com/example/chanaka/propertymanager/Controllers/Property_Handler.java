@@ -26,15 +26,16 @@ public class Property_Handler {
         dbCon=DatabaseConnector.getInstance(context);
     }
 
+    //Create a property
     public void createProperty(String[] basicInf, Double[] rentalInf, String[] otherInf){
         property=new Property(basicInf[0],basicInf[3],basicInf[1],basicInf[2],rentalInf[0],
                 rentalInf[1],otherInf[0],otherInf[1]);
-        //dbCon=new DatabaseConnector(context);
         dbCon.addProperty(property);
 
-
-        Toast.makeText(context, "hhh",Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Property Created Successfully",Toast.LENGTH_LONG).show();
     }
+
+    //get the list of saved apartments
     public String[] viewApartments(){
         ArrayList<String> a=dbCon.viewAllApartments();
         String[] apartments=a.toArray(new String[a.size()]);

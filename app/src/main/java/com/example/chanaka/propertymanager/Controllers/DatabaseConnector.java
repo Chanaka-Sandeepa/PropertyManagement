@@ -154,12 +154,14 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //get all the saved apartments from the database
     public ArrayList<String> viewAllApartments(){
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select address from apartmentDetails";
         cursor=db.rawQuery(query,null);
         ArrayList<String> properties=new ArrayList<String>();
         while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null)
                 properties.add(cursor.getString(cursor.getColumnIndex("address")));
         }
         return properties;

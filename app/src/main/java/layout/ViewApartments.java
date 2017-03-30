@@ -33,10 +33,11 @@ public class ViewApartments extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_apartment_list,container,false);
         pHan=new Property_Handler(getContext());
-        listView=(ListView) view.findViewById(R.id.lstApartments);
+        listView=(ListView)view.findViewById(R.id.lstApartments);
         apartments=pHan.viewApartments();
         Log.w("xxx",apartments[0]);
         adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
+
         listView.setAdapter(adapter);
 
         return view;

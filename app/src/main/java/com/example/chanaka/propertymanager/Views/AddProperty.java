@@ -1,5 +1,6 @@
 package com.example.chanaka.propertymanager.Views;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -65,5 +66,10 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
     @Override
     public void addNewPropertyFragment(Double[] rental_info, String[] other_info) {
         addNewProperty(rental_info,other_info);
+    }
+
+    @Override
+    public void goToHome() {
+        startActivity(new Intent(AddProperty.this,Home.class));
     }
 }

@@ -1,6 +1,7 @@
 package layout;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 import com.example.chanaka.propertymanager.R;
 import com.example.chanaka.propertymanager.Views.AddProperty;
+import com.example.chanaka.propertymanager.Views.Home;
 
 /**
  * Created by chanaka on 3/30/17.
@@ -23,6 +25,7 @@ public class AddRenatalInfo extends Fragment {
 
     public interface AddRentalInfoListener{
         void addNewPropertyFragment(Double[] rental_info,String[] other_info);
+        void goToHome();
     }
 
     private EditText rental;
@@ -59,6 +62,8 @@ public class AddRenatalInfo extends Fragment {
         other_info=new String[]{date.getText().toString(),image.getText().toString()};
 
         addRentalInfoListener.addNewPropertyFragment(rental_info,other_info);
+        addRentalInfoListener.goToHome();
+
     }
 
 

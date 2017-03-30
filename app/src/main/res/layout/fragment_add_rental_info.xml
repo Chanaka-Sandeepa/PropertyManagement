@@ -11,8 +11,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView6"
         android:layout_toEndOf="@+id/textView6"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginBottom="23dp"
         android:id="@+id/addBtn" />
 
@@ -45,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/textView5"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
