@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class DatabaseConnector extends SQLiteOpenHelper {
-    private static final int db_version=1;
+    private static final int db_version=2;
     public final static String dbName="propertyManagerDB";
     Cursor cursor;
 
@@ -56,6 +56,14 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Payment_Type="payment_type";
 
 
+    private static DatabaseConnector databaseConnector=null;
+
+    public static DatabaseConnector getInstance(Context context){
+        if(databaseConnector==null){
+            databaseConnector=new DatabaseConnector(context);
+        }
+        return databaseConnector;
+    }
 
     public DatabaseConnector(Context context) {
         super(context, dbName, null, db_version);
@@ -106,10 +114,9 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     }
     //save new property
     public void addProperty(Property property) {
-        SQLiteDatabase db =this.getWritableDatabase();
+        SQLiteDatabase db =getWritableDatabase();
 
         ContentValues values=new ContentValues();
-        values.put(Key_Apartment_ID,1);
         values.put(Key_Apartment_address,property.getAddress());
         values.put(Key_Apartment_type,property.getPropertyType());
         values.put(Key_sq_footage,property.getSqFootage());
@@ -149,14 +156,11 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public ArrayList<String> viewAllApartments(){
         SQLiteDatabase db =this.getReadableDatabase();
+        String query="select address from apartmentDetails";
+        cursor=db.rawQuery(query,null);
         ArrayList<String> properties=new ArrayList<String>();
-        cursor=getApartments(db);
-        if(cursor.moveToFirst()){
-            do{
-                String address;
-                address=cursor.getString(1);
-                properties.add(address);
-            }while (cursor.moveToNext());
+        while(cursor.moveToNext()){
+                properties.add(cursor.getString(cursor.getColumnIndex("address")));
         }
         return properties;
 
@@ -167,7 +171,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         SQLiteDatabase db =this.getWritableDatabase();
 
         ContentValues values=new ContentValues();
-        values.put(Key_Payment_ID,2);
         values.put(Key_Payment_amount,payment.getAmount());
         values.put(Key_Payment_Apartment,payment.getProperty());
         values.put(Key_Payment_Tenant,payment.getTenant());

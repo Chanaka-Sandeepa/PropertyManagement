@@ -8,10 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.chanaka.propertymanager.R;
 import com.example.chanaka.propertymanager.SectionPageAdapter;
 
-import layout.AddNewTenant;
 import layout.NewPayment;
 import layout.PaymentHistory;
-import layout.ViewTenantsInfo;
 
 /**
  * Created by chanaka on 3/28/17.
@@ -27,7 +25,7 @@ public class Payment_info extends AppCompatActivity{
         setContentView(R.layout.activity_view__tenants_info);
 
         msectionPage=new SectionPageAdapter(getSupportFragmentManager());
-        mviewPager=(ViewPager) findViewById(R.id.container);
+        mviewPager=(ViewPager) findViewById(R.id.container2);
         setUpViewPager(mviewPager);
 
         TabLayout tabLayout= (TabLayout) findViewById(R.id.tabs);

@@ -35,4 +35,5 @@
         <item>Apartment4</item>
         <item>Apartment5</item>
     </string-array>
+    <string name="title_activity_add_property">AddProperty</string>
 </resources>

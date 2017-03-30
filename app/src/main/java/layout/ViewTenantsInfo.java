@@ -19,7 +19,6 @@ import com.example.chanaka.propertymanager.R;
 
 
 public class ViewTenantsInfo extends Fragment {
-    //private static final String tag="Tab2";
 
     @Nullable
     @Override

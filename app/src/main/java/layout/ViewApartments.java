@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.chanaka.propertymanager.Controllers.Property_Handler;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 
 public class ViewApartments extends Fragment {
     ListView listView;
-    ArrayAdapter<String> adapter;
+    ListAdapter adapter;
     String[] apartments;
     Property_Handler pHan;
     @Nullable
@@ -33,7 +35,8 @@ public class ViewApartments extends Fragment {
         pHan=new Property_Handler(getContext());
         listView=(ListView) view.findViewById(R.id.lstApartments);
         apartments=pHan.viewApartments();
-        adapter=new ArrayAdapter<String>(getActivity().getBaseContext(),android.R.layout.simple_list_item_1,apartments);
+        Log.w("xxx",apartments[0]);
+        adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
         listView.setAdapter(adapter);
 
         return view;

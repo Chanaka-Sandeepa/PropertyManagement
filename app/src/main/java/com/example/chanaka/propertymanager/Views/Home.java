@@ -52,9 +52,9 @@ public class Home extends AppCompatActivity {
         //Set listner to view Tenants
         Button btnTenants=(Button)findViewById(R.id.btnTenant);
         //set image to button
-        Drawable imgTenants = ctx.getResources().getDrawable( R.drawable.home );
+        Drawable imgTenants = ctx.getResources().getDrawable( R.drawable.tenant );
         imgTenants.setBounds( 0, 0, 120, 100 );
-        btnCreate.setCompoundDrawables( null, imgTenants, null, null );
+        btnTenants.setCompoundDrawables( null, imgTenants, null, null );
         btnTenants.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -66,9 +66,9 @@ public class Home extends AppCompatActivity {
         //Set listner to view Payments
         Button btnPayment=(Button)findViewById(R.id.btnPayment);
         //set image to button
-        Drawable imgPay = ctx.getResources().getDrawable( R.drawable.home );
+        Drawable imgPay = ctx.getResources().getDrawable( R.drawable.money );
         imgPay.setBounds( 0, 0, 120, 100 );
-        btnCreate.setCompoundDrawables( null, imgPay, null, null );
+        btnPayment.setCompoundDrawables( null, imgPay, null, null );
         btnPayment.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -80,9 +80,9 @@ public class Home extends AppCompatActivity {
         //Set listner to view alerts
         Button btnAllert=(Button)findViewById(R.id.btnAlerts);
         //set image to button
-        Drawable imgAlerts = ctx.getResources().getDrawable( R.drawable.home );
+        Drawable imgAlerts = ctx.getResources().getDrawable( R.drawable.alarm );
         imgAlerts.setBounds( 0, 0, 120, 100 );
-        btnCreate.setCompoundDrawables( null, imgAlerts, null, null );
+        btnAllert.setCompoundDrawables( null, imgAlerts, null, null );
         btnAllert.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -96,7 +96,7 @@ public class Home extends AppCompatActivity {
     //Start the activity of adding basic info
     public void createButtonClicked(){
 
-        startActivity(new Intent(Home.this,Add_BasicInfo.class));
+        startActivity(new Intent(Home.this,AddProperty.class));
     }
 
     //Start the activity of view Tenants

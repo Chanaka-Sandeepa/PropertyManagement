@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/graycolor"
     tools:context="com.example.chanaka.propertymanager.Views.Home">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:background="@android:color/background_light">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
@@ -66,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             class="layout.ViewApartments"
-            android:layout_marginTop="82dp"
+            android:layout_marginTop="65dp"
             android:id="@+id/fragment"
             tools:layout="@layout/apartments_list_view"
             android:layout_below="@+id/btnPayment"
