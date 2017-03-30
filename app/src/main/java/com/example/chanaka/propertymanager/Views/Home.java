@@ -24,16 +24,14 @@ public class Home extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Context ctx=this.getBaseContext();
 
-
         //setup toolbar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
 
         //Set listner to create button
         Button btnCreate=(Button)findViewById(R.id.btnCreate);
@@ -86,7 +84,7 @@ public class Home extends AppCompatActivity {
         btnAllert.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        tenantButtonClicked();
+                        alertsButtonClicked();
                     }
                 }
         );
@@ -109,6 +107,13 @@ public class Home extends AppCompatActivity {
     public void paymentButtonClicked(){
 
         startActivity(new Intent(Home.this,Payment_info.class));
+
+    }
+
+    //Start the activity of alerts
+    public void alertsButtonClicked(){
+
+        startActivity(new Intent(Home.this,AlertsInfo.class));
 
     }
 

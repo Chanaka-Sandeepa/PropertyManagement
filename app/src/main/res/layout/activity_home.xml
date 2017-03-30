@@ -20,7 +20,8 @@
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="Property Manager" />
 
         <Button
             android:text="@string/createText"
@@ -68,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             class="layout.ViewApartments"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="38dp"
             android:id="@+id/fragment"
             tools:layout="@layout/apartments_list_view"
             android:layout_below="@+id/btnPayment"

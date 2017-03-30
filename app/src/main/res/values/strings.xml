@@ -36,4 +36,5 @@
         <item>Apartment5</item>
     </string-array>
     <string name="title_activity_add_property">AddProperty</string>
+    <string name="title_activity_alerts_info">AlertsInfo</string>
 </resources>

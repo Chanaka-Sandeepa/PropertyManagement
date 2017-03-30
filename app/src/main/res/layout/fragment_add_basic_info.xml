@@ -6,6 +6,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
+        android:text="@string/name_no__lbl_txt"
+        android:ems="10"
+        android:id="@+id/txtNo"
+        android:textSize="14sp"
+        android:layout_below="@+id/lblAddress"
+        android:layout_alignLeft="@+id/lblAddress"
+        android:layout_alignStart="@+id/lblAddress" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
         android:text="@string/street_name__lbl_txt"
         android:ems="10"
         android:layout_marginTop="10dp"
@@ -73,17 +85,7 @@
         android:layout_marginTop="6dp"
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/name_no__lbl_txt"
-        android:ems="10"
-        android:id="@+id/txtNo"
-        android:textSize="14sp"
-        android:layout_below="@+id/lblAddress"
-        android:layout_alignLeft="@+id/lblAddress"
-        android:layout_alignStart="@+id/lblAddress" />
+
 
     <TextView
         android:text="@string/address_lbl_txt"

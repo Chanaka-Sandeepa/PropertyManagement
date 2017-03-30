@@ -1,12 +1,14 @@
 package com.example.chanaka.propertymanager.Views;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.TabHost;
 
 import com.example.chanaka.propertymanager.Controllers.Property_Handler;
@@ -37,6 +39,15 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
 
         TabLayout tabLayout= (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mviewPager);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddProperty.this,Home.class));
+
+            }
+        });
 
     }
     public void setUpViewPager(ViewPager viewPager){

@@ -114,7 +114,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     }
     //save new property
     public void addProperty(Property property) {
-        SQLiteDatabase db =getWritableDatabase();
+        SQLiteDatabase db =this.getWritableDatabase();
 
         ContentValues values=new ContentValues();
         values.put(Key_Apartment_address,property.getAddress());
@@ -165,6 +165,19 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 properties.add(cursor.getString(cursor.getColumnIndex("address")));
         }
         return properties;
+
+    }
+    //get a specific apartemnt
+    public String getProperty(String s){
+        String property="";
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select address from apartmentDetails where address='"+s+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null)
+                property =cursor.getString(cursor.getColumnIndex("address"));
+        }
+        return property;
 
     }
 
