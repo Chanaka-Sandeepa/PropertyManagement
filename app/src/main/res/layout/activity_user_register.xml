@@ -34,19 +34,6 @@
         android:id="@+id/txtSirName" />
 
     <TextView
-        android:text="E-mail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editText9" />
-
-    <TextView
         android:text="Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +45,17 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/txtUsername" />
+
+    <TextView
+        android:text="User Type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView18" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner3" />
 
     <TextView
         android:text="Password"

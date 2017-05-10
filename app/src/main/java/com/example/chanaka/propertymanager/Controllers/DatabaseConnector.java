@@ -57,6 +57,15 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Payment_Date="date";
     private final static String Key_Payment_Type="payment_type";
 
+    //User Table
+    private final static String Table_Users="userDetails";
+    //User table columns
+    private final static String Key_User_ID="id";
+    private final static String Key_full_name="full_name";
+    private final static String Key_Username="username";
+    private final static String Key_User_Type="user_type";
+    private final static String Key_Password="password";
+
 
     private static DatabaseConnector databaseConnector=null;
 
@@ -102,12 +111,19 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_Payment_Apartment+" INTEGER,"
                 +Key_Payment_Date+" TEXT,"
                 +Key_Payment_Type+" TEXT" +")";
-        String delete_Tenant_Table="DROP TABLE "+Table_Tenant_Details;
+
+        //create User table
+        String Create_User_Table="CREATE TABLE "+Table_Users+"("
+                +Key_User_ID+" INTEGER PRIMARY KEY,"
+                +Key_full_name+" TEXT,"
+                +Key_Username+" TEXT,"
+                +Key_User_Type+" TEXT,"
+                +Key_Password+" TEXT" +")";
 
         db.execSQL(Create_Apartment_Table);
-        db.execSQL(delete_Tenant_Table);
         db.execSQL(Create_Tenants_Table);
          db.execSQL(Create_Payments_Table);
+        db.execSQL(Create_User_Table);
 
     }
 
@@ -253,5 +269,33 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         Log.e("aa","return tenant");
         return tenants;
+    }
+
+    public void addUser(String name, String uname, String type, String password) {
+        SQLiteDatabase db =this.getWritableDatabase();
+
+        ContentValues values=new ContentValues();
+        values.put(Key_full_name,name);
+        values.put(Key_Username,uname);
+        values.put(Key_User_Type,type);
+        values.put(Key_Password,password);
+
+        db.insert(Table_Users,null,values);
+        db.close();
+    }
+
+    public int login(String s, String pw) {
+        int i=0;
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select user_type from userDetails where username='"+s+"' and password='"+pw+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("user_type")).equals("Landloard")) {
+                return 1;
+            }else if (cursor.getString(cursor.getColumnIndex("user_type")).equals("Tenant")){
+                return 2;
+            }
+        }
+        return 0;
     }
 }
