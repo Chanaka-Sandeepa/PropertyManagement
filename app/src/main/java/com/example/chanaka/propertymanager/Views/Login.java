@@ -29,6 +29,15 @@ public class Login extends AppCompatActivity {
                     }
                 }
         );
+
+        Button btnRegister = (Button)findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        registerButtonClicked();
+                    }
+                }
+        );
     }
 
     public void loginButtonClicked(String username, String password){
@@ -37,5 +46,9 @@ public class Login extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void registerButtonClicked(){
+        startActivity(new Intent(Login.this,UserRegister.class));
     }
 }
