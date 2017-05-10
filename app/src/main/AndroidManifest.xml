@@ -7,11 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Views.Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +28,20 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.AddProperty"
-            android:label="@string/title_activity_add_property" />
+            android:label="@string/title_activity_add_property"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Views.AlertsInfo"
             android:label="@string/title_activity_alerts_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Views.TenantHome" />
+        <activity android:name=".Views.Login"
+                    android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tenant_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.chanaka.propertymanager.Views.TenantHome">
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="51dp"
+        android:id="@+id/btnSearch" />
+
+    <Button
+        android:text="Apartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnSearch"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="67dp"
+        android:layout_marginEnd="67dp"
+        android:id="@+id/btnApartment" />
+
+    <Button
+        android:text="Payments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSearch"
+        android:layout_alignLeft="@+id/btnSearch"
+        android:layout_alignStart="@+id/btnSearch"
+        android:layout_marginTop="43dp"
+        android:id="@+id/btnPayment" />
+
+    <Button
+        android:text="Contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnPayment"
+        android:layout_alignLeft="@+id/btnApartment"
+        android:layout_alignStart="@+id/btnApartment"
+        android:id="@+id/btnContact" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnPayment"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+</RelativeLayout>

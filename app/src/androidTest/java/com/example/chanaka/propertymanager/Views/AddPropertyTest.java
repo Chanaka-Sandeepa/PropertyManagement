@@ -20,13 +20,13 @@ public class AddPropertyTest {
         DatabaseConnector dbCon=DatabaseConnector.getInstance(InstrumentationRegistry.getTargetContext());
 
         //create and add a dummy property to test
-        //Property property=new Property("aa","bb","cc","dd",100.00,100.00,"ee","ff");
-        //dbCon.addProperty(property);
+        Property property=new Property("aa","bb","cc","dd",100.00,100.00,"ee","ff");
+        dbCon.addProperty(property);
 
-        //String property2=dbCon.getProperty("aa");
+        String property2=dbCon.getProperty("aa");
 
         //check the results
-        //assertEquals(property.getAddress(),property2);
+        assertEquals(property.getAddress(),property2);
     }
 
 }

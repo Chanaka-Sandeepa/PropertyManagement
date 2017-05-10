@@ -28,6 +28,7 @@ public class AlertsInfo extends AppCompatActivity {
         populateList(listItems);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.back);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

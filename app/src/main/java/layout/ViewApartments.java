@@ -35,7 +35,6 @@ public class ViewApartments extends Fragment {
         pHan=new Property_Handler(getContext());
         listView=(ListView)view.findViewById(R.id.lstApartments);
         apartments=pHan.viewApartments();
-        Log.w("xxx",apartments[0]);
         adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
 
         listView.setAdapter(adapter);

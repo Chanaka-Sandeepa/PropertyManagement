@@ -1,7 +1,6 @@
 package layout;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.chanaka.propertymanager.R;
-import com.example.chanaka.propertymanager.Views.AddProperty;
-import com.example.chanaka.propertymanager.Views.Home;
 
 /**
  * Created by chanaka on 3/30/17.
@@ -42,8 +39,8 @@ public class AddRenatalInfo extends Fragment {
 
         rental= (EditText) view.findViewById(R.id.txtRental);
         deposit= (EditText) view.findViewById(R.id.txtDeposit);
-        date= (EditText) view.findViewById(R.id.txtDate);
-        image= (EditText) view.findViewById(R.id.txtImage);
+        date= (EditText) view.findViewById(R.id.txtContact);
+        image= (EditText) view.findViewById(R.id.txtContact);
 
         Button btnAdd=(Button)view.findViewById(R.id.addBtn);
         btnAdd.setOnClickListener(

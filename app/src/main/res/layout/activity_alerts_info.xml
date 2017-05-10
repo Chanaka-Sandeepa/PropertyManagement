@@ -33,12 +33,26 @@
         android:background="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_dialog_email"
         tools:backgroundTint="@color/colorPrimary"
-        tools:srcCompat="@drawable/home" />
+        tools:srcCompat="@drawable/home"
+        app:backgroundTint="@color/colorPrimary" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="53dp"
+        android:layout_height="472dp"
+        android:layout_marginTop="93dp"
         android:id="@+id/lstAlerts" />
+
+    <TextView
+        android:text="Alerts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:id="@+id/textView"
+        android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="15dp"
+        android:textColor="#ffff"
+        android:gravity="left" />
 
 </android.support.design.widget.CoordinatorLayout>

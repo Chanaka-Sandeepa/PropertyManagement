@@ -32,6 +32,7 @@ public class View_Tenants_info extends AppCompatActivity {
         tabLayout.setupWithViewPager(mviewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.back);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

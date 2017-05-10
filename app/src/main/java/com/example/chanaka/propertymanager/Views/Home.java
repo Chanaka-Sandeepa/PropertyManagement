@@ -20,6 +20,7 @@ import static java.security.AccessController.getContext;
 
 public class Home extends AppCompatActivity {
 
+    public static boolean isTenant=false;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -29,6 +30,17 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Context ctx=this.getBaseContext();
 
+        //Test TenantHome
+
+        Button btnTest=(Button)findViewById(R.id.btnTest);
+        btnTest.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+
+                        startActivity(new Intent(Home.this,TenantHome.class));
+                    }
+                }
+        );
         //setup toolbar
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);

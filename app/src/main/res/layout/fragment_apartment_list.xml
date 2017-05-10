@@ -18,7 +18,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/darker_gray"
+        android:background="@color/graycolor"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/PopupOverlay"
         app:title="My Apartments">

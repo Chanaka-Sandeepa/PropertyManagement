@@ -20,6 +20,19 @@
         <item>Boarding Place</item>
 
     </string-array>
+
+    <string-array name="payment_types">
+        <item>Rental</item>
+        <item>Deposit</item>
+
+    </string-array>
+
+    <string-array name="apartments">
+        <item>moratwa</item>
+        <item>Colombo</item>
+        <item>Kottawa</item>
+
+    </string-array>
     <string name="title_activity_view__tenants_info">View_Tenants_info</string>
     <string name="title_activity_payment_info">View_Tenants_info</string>
     <string name="section_format">Hello World from section: %1$d</string>

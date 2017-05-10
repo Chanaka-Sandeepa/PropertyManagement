@@ -5,6 +5,7 @@ package com.example.chanaka.propertymanager.Models;
  */
 
 public class Property {
+    private String id;
     private String address;
     private String propertyType;
     private String sqFootage;
@@ -24,6 +25,15 @@ public class Property {
         this.date = date;
         this.image = image;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     public void setAddress(String address) {
         this.address = address;

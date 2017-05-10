@@ -39,7 +39,6 @@ public class AddBasicInfo extends Fragment {
     private EditText city;
     private EditText footage;
     private EditText desc;
-    ViewPager viewPager;
 
     @Nullable
     @Override

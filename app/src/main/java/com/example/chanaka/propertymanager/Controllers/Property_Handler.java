@@ -18,8 +18,6 @@ public class Property_Handler {
     Property property;
     Context context;
     DatabaseConnector dbCon;
-    SQLiteDatabase db;
-    Cursor cursor;
 
     public Property_Handler(Context context) {
         this.context = context;
@@ -37,8 +35,11 @@ public class Property_Handler {
 
     //get the list of saved apartments
     public String[] viewApartments(){
-        ArrayList<String> a=dbCon.viewAllApartments();
-        String[] apartments=a.toArray(new String[a.size()]);
+        ArrayList<Property> a=dbCon.getApartments();
+        String[] apartments=new String[a.size()];
+        for (int i=0;i<a.size();i++){
+            apartments[i]=a.get(i).getAddress();
+        }
         return apartments;
 
     }

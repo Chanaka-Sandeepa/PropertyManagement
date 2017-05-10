@@ -27,6 +27,17 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
     Double[] rental_info =new Double[2];
     String[] other_info = new String[2];
 
+    private boolean isTenant=false;
+
+    public void setTenant(boolean tenant) {
+        isTenant = tenant;
+    }
+
+    public boolean isTenant() {
+
+        return isTenant;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,7 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
         tabLayout.setupWithViewPager(mviewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.back);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,4 +95,6 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
     public void goToHome() {
         startActivity(new Intent(AddProperty.this,Home.class));
     }
+
+
 }
