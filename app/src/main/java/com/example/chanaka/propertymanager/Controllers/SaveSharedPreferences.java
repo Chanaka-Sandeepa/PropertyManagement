@@ -12,6 +12,7 @@ public class SaveSharedPreferences {
 
     static final String PREF_USER_NAME= "";
     static final String PREF_Password= "";
+    static String PREF_Address="";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);

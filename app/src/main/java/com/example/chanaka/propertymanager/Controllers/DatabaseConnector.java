@@ -23,6 +23,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private static final int db_version=1;
     public final static String dbName="propertyManagementDB";
     Cursor cursor;
+    Context ctx;
 
     //Apartments Table
     private final static String Table_Apartment_Details="apartmentDetails";
@@ -65,6 +66,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Username="username";
     private final static String Key_User_Type="user_type";
     private final static String Key_Password="password";
+    private final static String Key_apartment="apartment";
 
 
     private static DatabaseConnector databaseConnector=null;
@@ -187,6 +189,24 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public Property getProperty(int i){
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select * from apartmentDetails where id='"+i+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
+                Property p = new Property(cursor.getString(cursor.getColumnIndex("address")), cursor.getString(cursor.getColumnIndex("type")),
+                        cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
+                        cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
+                        cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                return p;
+            }
+        }
+        return null;
+
+    }
+
+    //get a specific apartemnt by address
+    public Property getPropertyByAddress(String address){
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select * from apartmentDetails where address='"+address+"'";
         cursor=db.rawQuery(query,null);
         while(cursor.moveToNext()){
             if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
@@ -341,4 +361,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         return 0;
     }
+
+    public void setApartment(String s){
+        SQLiteDatabase db =this.getWritableDatabase();
+        String Insert_Apartment="UPDATE userDetails SET apartment = '"+s+"' WHERE username='"+SaveSharedPreferences.PREF_USER_NAME+"'";
+        SaveSharedPreferences.PREF_Address=s;
+        db.execSQL(Insert_Apartment);
+    }
+
 }
