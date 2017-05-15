@@ -182,17 +182,42 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return properties;
 
     }
+
     //get a specific apartemnt
-    public String getProperty(String s){
-        String property="";
+    public Property getProperty(int i){
         SQLiteDatabase db =this.getReadableDatabase();
-        String query="select address from apartmentDetails where address='"+s+"'";
+        String query="select * from apartmentDetails where id='"+i+"'";
         cursor=db.rawQuery(query,null);
         while(cursor.moveToNext()){
-            if (cursor.getString(cursor.getColumnIndex("address"))!=null)
-                property =cursor.getString(cursor.getColumnIndex("address"));
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
+                Property p = new Property(cursor.getString(cursor.getColumnIndex("address")), cursor.getString(cursor.getColumnIndex("type")),
+                        cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
+                        cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
+                        cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                return p;
+            }
         }
-        return property;
+        return null;
+
+    }
+
+    //get nearby properties
+    public ArrayList<Property> getNearbyProperties(String s){
+        SQLiteDatabase db =this.getReadableDatabase();
+        ArrayList<Property> properties=new ArrayList<>();
+        String query="select * from apartmentDetails where address like '%"+s+"%'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            Log.e("aa","aa");
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
+                Property p = new Property(cursor.getString(cursor.getColumnIndex("address")), cursor.getString(cursor.getColumnIndex("type")),
+                        cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
+                        cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
+                        cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                properties.add(p);
+            }
+        }
+        return properties;
 
     }
 
@@ -269,6 +294,24 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         Log.e("aa","return tenant");
         return tenants;
+    }
+
+    //get a specific tenant
+    public Tenant getTenant(int i){
+        String property="";
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select * from tenantsDetails where id='"+i+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("name"))!=null) {
+                Tenant t=new Tenant(cursor.getString(cursor.getColumnIndex("name")),cursor.getString(cursor.getColumnIndex("permanant_address")),
+                        cursor.getInt(cursor.getColumnIndex("contact_number")),cursor.getString(cursor.getColumnIndex("apartment")),
+                        cursor.getString(cursor.getColumnIndex("image")));
+                return t;
+            }
+        }
+        return null;
+
     }
 
     public void addUser(String name, String uname, String type, String password) {

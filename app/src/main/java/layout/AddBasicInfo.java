@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.AddProperty;
 
 /**
  * Created by chanaka on 3/30/17.
@@ -78,6 +79,15 @@ public class AddBasicInfo extends Fragment {
                     }
                 }
         );
+
+        if(AddProperty.isTenant){
+            number.setFocusable(false);
+            street.setFocusable(false);
+            city.setFocusable(false);
+            footage.setFocusable(false);
+            desc.setFocusable(false);
+            spinner.setFocusable(false);
+        }
 
 
 

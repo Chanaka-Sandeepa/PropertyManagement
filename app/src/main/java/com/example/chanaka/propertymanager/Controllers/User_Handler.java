@@ -35,15 +35,29 @@ public class User_Handler {
     public String[] viewTenants(){
         ArrayList<Tenant> a=dbCon.getTenants();
         String[] tenants=new String[a.size()];
-        String[] sPayments=new String[a.size()];
         for (int i=0;i<a.size();i++){
             tenants[i]=a.get(i).getName();
         }
-        for (int i=0;  i<tenants.length;  i++) {
-            sPayments[i] = "" + tenants[i];
+        return tenants;
+
+    }
+
+    //get the list of notifications
+    public String[] getNotifications(){
+        ArrayList<Payment> a=dbCon.getPayments();
+        String[] alerts=new String[3];
+        float totalAmount=0;
+        alerts[0]= "Last Payment             "+a.get(0).getAmount()+".00";
+
+        for (int i=0;  i<a.size();  i++) {
+            totalAmount += a.get(i).getAmount();
         }
 
-        return tenants;
+        alerts[1]= "Total amount payed       "+totalAmount+".00";
+
+        alerts[2]= "Next due date            "+dbCon.getProperty(1).getDate();
+
+        return alerts;
 
     }
 

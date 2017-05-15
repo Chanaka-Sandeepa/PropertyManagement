@@ -23,7 +23,7 @@ public class AddPropertyTest {
         Property property=new Property("aa","bb","cc","dd",100.00,100.00,"ee","ff");
         dbCon.addProperty(property);
 
-        String property2=dbCon.getProperty("aa");
+        String property2=dbCon.getProperty(-1).getAddress();
 
         //check the results
         assertEquals(property.getAddress(),property2);

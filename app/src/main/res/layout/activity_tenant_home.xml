@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_tenant_home"
     android:layout_width="match_parent"
@@ -9,18 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.chanaka.propertymanager.Views.TenantHome">
-
-    <Button
-        android:text="Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="51dp"
-        android:id="@+id/btnSearch" />
 
     <Button
         android:text="Apartment"
@@ -50,7 +39,8 @@
         android:layout_alignTop="@+id/btnPayment"
         android:layout_alignLeft="@+id/btnApartment"
         android:layout_alignStart="@+id/btnApartment"
-        android:id="@+id/btnContact" />
+        android:id="@+id/btnContact"
+        android:layout_alignEnd="@+id/btnApartment" />
 
     <ListView
         android:layout_width="match_parent"
@@ -58,6 +48,31 @@
         android:layout_below="@+id/btnPayment"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="70dp"
+        android:background="@color/colorAccent"
+        android:id="@+id/lstAlerts" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:id="@+id/btnSearch"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/graycolor"
+
+        android:title="My Apartments"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/btnPayment"
+        android:layout_alignParentStart="true"
+        app:title="Notifications" />
 
 </RelativeLayout>

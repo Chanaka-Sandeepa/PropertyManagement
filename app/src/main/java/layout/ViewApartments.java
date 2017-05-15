@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.Models.Property;
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.ResultApartments;
 
 import java.util.ArrayList;
 
@@ -28,13 +29,19 @@ public class ViewApartments extends Fragment {
     ListAdapter adapter;
     String[] apartments;
     Property_Handler pHan;
+    public static boolean isSearch=false;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_apartment_list,container,false);
         pHan=new Property_Handler(getContext());
         listView=(ListView)view.findViewById(R.id.lstApartments);
-        apartments=pHan.viewApartments();
+        if(isSearch){
+            ResultApartments activity=(ResultApartments)getActivity();
+            apartments=activity.getProperties();
+        }else {
+            apartments = pHan.viewApartments();
+        }
         adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
 
         listView.setAdapter(adapter);

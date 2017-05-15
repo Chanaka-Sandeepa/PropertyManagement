@@ -21,22 +21,13 @@ import layout.AddRenatalInfo;
 public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddBasicInfoListener, AddRenatalInfo.AddRentalInfoListener{
     private SectionPageAdapter msectionPage;
     private ViewPager mviewPager;
+    public static boolean isTenant= false;
     TabHost tabHost;
     Property_Handler pHan;
     String[] basic_info = new String[4];
     Double[] rental_info =new Double[2];
     String[] other_info = new String[2];
 
-    private boolean isTenant=false;
-
-    public void setTenant(boolean tenant) {
-        isTenant = tenant;
-    }
-
-    public boolean isTenant() {
-
-        return isTenant;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +51,7 @@ public class AddProperty extends AppCompatActivity  implements AddBasicInfo.AddB
 
             }
         });
+
 
     }
     public void setUpViewPager(ViewPager viewPager){

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Controllers.DatabaseConnector;
+import com.example.chanaka.propertymanager.Controllers.SaveSharedPreferences;
 import com.example.chanaka.propertymanager.R;
 
 public class Login extends AppCompatActivity {
@@ -17,6 +18,10 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(SaveSharedPreferences.getUserName(Login.this).length() != 0)
+        {
+            loginButtonClicked(SaveSharedPreferences.getUserName(Login.this),SaveSharedPreferences.getPassword(Login.this));
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -44,7 +49,9 @@ public class Login extends AppCompatActivity {
 
     public void loginButtonClicked(String username, String password){
         DatabaseConnector dbCon= DatabaseConnector.getInstance(getBaseContext());
-        int type=dbCon.login(txtUsername.getText().toString(),txtPassword.getText().toString());
+        int type=dbCon.login(username,password);
+        SaveSharedPreferences.setUserName(this.getBaseContext(),username);
+        SaveSharedPreferences.setUserName(this.getBaseContext(),password);
         if(type==1) {
             startActivity(new Intent(Login.this, Home.class));
         }else if (type==2){

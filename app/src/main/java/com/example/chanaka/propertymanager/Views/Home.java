@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.chanaka.propertymanager.Controllers.SaveSharedPreferences;
 import com.example.chanaka.propertymanager.R;
 
 import static com.example.chanaka.propertymanager.R.drawable.home;
@@ -30,20 +31,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Context ctx=this.getBaseContext();
 
-        //Test TenantHome
-
-        Button btnTest=(Button)findViewById(R.id.btnTest);
-        btnTest.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-
-                        startActivity(new Intent(Home.this,TenantHome.class));
-                    }
-                }
-        );
-        //setup toolbar
-        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        //setSupportActionBar(myToolbar);
 
         //Set listner to create button
         Button btnCreate=(Button)findViewById(R.id.btnCreate);
@@ -144,10 +131,17 @@ public class Home extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        SaveSharedPreferences.setUserName(Home.this,"");
+        SaveSharedPreferences.setPassword(Home.this,"");
+        startActivity(new Intent(Home.this,Login.class));
     }
 }

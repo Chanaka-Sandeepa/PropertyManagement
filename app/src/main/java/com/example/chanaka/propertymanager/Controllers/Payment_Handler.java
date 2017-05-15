@@ -38,7 +38,7 @@ public class Payment_Handler {
         String[] payments=new String[a.size()];
         String[] sPayments=new String[a.size()];
         for (int i=0;i<a.size();i++){
-            payments[i]=a.get(i).getDate();
+            payments[i]= dbCon.getTenant(a.get(i).getTenant()).getName()+"      "+a.get(i).getAmount()+".00      "+a.get(i).getDate();
         }
         for (int i=0;  i<payments.length;  i++) {
             sPayments[i] = "" + payments[i];
