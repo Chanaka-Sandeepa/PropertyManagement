@@ -1,5 +1,8 @@
 package com.example.chanaka.propertymanager.Models;
 
+import com.example.chanaka.propertymanager.Controllers.DatabaseConnector;
+import com.example.chanaka.propertymanager.Views.Login;
+
 /**
  * Created by chanaka on 3/27/17.
  */
@@ -14,6 +17,7 @@ public class Property {
     private double deposit;
     private String date;
     private String image;
+    private float rating;
 
     public Property(String address, String propertyType, String sqFootage, String desc, double rental, double deposit, String date, String image) {
         this.address = address;
@@ -97,5 +101,10 @@ public class Property {
 
     public String getImage() {
         return image;
+    }
+
+    public float getRating() {
+        DatabaseConnector d=DatabaseConnector.getInstance(Login.getCtx());
+        return d.getRatings(address)[0];
     }
 }

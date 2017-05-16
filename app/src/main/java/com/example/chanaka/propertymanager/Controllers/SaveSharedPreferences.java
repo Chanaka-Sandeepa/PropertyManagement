@@ -12,7 +12,7 @@ public class SaveSharedPreferences {
 
     static final String PREF_USER_NAME= "";
     static final String PREF_Password= "";
-    static String PREF_Address="";
+    static boolean isRated=false;
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -39,5 +39,14 @@ public class SaveSharedPreferences {
     public static String getPassword(Context ctx)
     {
         return getSharedPreferences(ctx).getString(PREF_Password, "");
+    }
+
+    public static boolean getIsRated() {
+        return isRated;
+    }
+
+    public static void setIsRated(boolean isRated) {
+
+        SaveSharedPreferences.isRated = isRated;
     }
 }

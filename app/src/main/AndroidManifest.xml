@@ -67,7 +67,8 @@
         <activity android:name=".Views.Search_Apartment" />
         <activity android:name=".Views.ResultApartments" />
         <activity android:name=".Views.RateApartment" />
-        <activity android:name=".Views.MyApartment"></activity>
+        <activity android:name=".Views.MyApartment" />
+        <activity android:name=".Views.UpdateTenant"></activity>
     </application>
 
 </manifest>

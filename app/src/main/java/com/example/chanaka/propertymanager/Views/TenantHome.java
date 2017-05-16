@@ -48,11 +48,11 @@ public class TenantHome extends AppCompatActivity {
                 }
         );
 
-        Button btnContact=(Button)findViewById(R.id.btnContact);
-        btnContact.setOnClickListener(
+        Button btnRate=(Button)findViewById(R.id.btnRate);
+        btnRate.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        contactButtonClicked();
+                        rateButtonClicked();
                     }
                 }
         );
@@ -85,11 +85,13 @@ public class TenantHome extends AppCompatActivity {
     }
 
     public void paymentButtonClicked(){
-        startActivity(new Intent(TenantHome.this,Payment_info.class));
+        Intent i=new Intent(TenantHome.this,Payment_info.class);
+        i.putExtra("isTenant",true);
+        startActivity(i);
     }
 
-    public void contactButtonClicked(){
-        startActivity(new Intent(TenantHome.this,AddProperty.class));
+    public void rateButtonClicked(){
+        startActivity(new Intent(TenantHome.this,RateApartment.class));
     }
 
     @Override
@@ -107,7 +109,7 @@ public class TenantHome extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
+        if (id ==R.id.action_logout) {
             logout();
             return true;
         }
@@ -118,6 +120,7 @@ public class TenantHome extends AppCompatActivity {
     private void logout() {
         SaveSharedPreferences.setUserName(TenantHome.this,"");
         SaveSharedPreferences.setPassword(TenantHome.this,"");
+        SaveSharedPreferences.setIsRated(false);
         startActivity(new Intent(TenantHome.this,Login.class));
     }
 }

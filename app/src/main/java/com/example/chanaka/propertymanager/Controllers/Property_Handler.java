@@ -43,4 +43,22 @@ public class Property_Handler {
         return apartments;
 
     }
+
+    public Property[] sortApartments(Property[] p){
+
+        int n = p.length;
+        Property temp = null;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+
+                if (p[j - 1].getRating() < p[j].getRating()) {
+                    temp = p[j - 1];
+                    p[j - 1]= p[j];
+                    p[j] = temp;
+                }
+
+            }
+        }
+        return p;
+    }
 }

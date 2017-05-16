@@ -2,6 +2,7 @@ package com.example.chanaka.propertymanager.Controllers;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.example.chanaka.propertymanager.Models.Payment;
 import com.example.chanaka.propertymanager.Models.Property;
 import com.example.chanaka.propertymanager.Models.Tenant;
+import com.example.chanaka.propertymanager.Views.Login;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Deposit="deposit";
     private final static String Key_AvailableDate="available_date";
     private final static String Key_Apartment_image="image";
+    private final static String Key_Apartment_rating="rating";
+    private final static String Key_Apartment_count="count";
 
     //Tenants Table
     private final static String Table_Tenant_Details="tenantsDetails";
@@ -66,7 +70,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Username="username";
     private final static String Key_User_Type="user_type";
     private final static String Key_Password="password";
-    private final static String Key_apartment="apartment";
+    private final static String Key_User_Apartment="apartment";
 
 
     private static DatabaseConnector databaseConnector=null;
@@ -94,6 +98,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_Rental+" INTEGER,"
                 +Key_Deposit+" INTEGER,"
                 +Key_AvailableDate+" TEXT,"
+                +Key_Apartment_rating+" FLOAT,"
+                +Key_Apartment_count+" INTEGER,"
                 +Key_Apartment_image+" TEXT"+")";
 
         //create Tenants table
@@ -120,6 +126,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_full_name+" TEXT,"
                 +Key_Username+" TEXT,"
                 +Key_User_Type+" TEXT,"
+                +Key_User_Apartment+" TEXT,"
                 +Key_Password+" TEXT" +")";
 
         db.execSQL(Create_Apartment_Table);
@@ -318,7 +325,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     //get a specific tenant
     public Tenant getTenant(int i){
-        String property="";
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select * from tenantsDetails where id='"+i+"'";
         cursor=db.rawQuery(query,null);
@@ -331,8 +337,18 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             }
         }
         return null;
-
     }
+    public int getTenantId(String name){
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select id from tenantsDetails where name='"+name+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            return cursor.getInt(cursor.getColumnIndex("id"));
+        }
+        return 0;
+    }
+
+
 
     public void addUser(String name, String uname, String type, String password) {
         SQLiteDatabase db =this.getWritableDatabase();
@@ -348,7 +364,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     }
 
     public int login(String s, String pw) {
-        int i=0;
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select user_type from userDetails where username='"+s+"' and password='"+pw+"'";
         cursor=db.rawQuery(query,null);
@@ -364,9 +379,49 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public void setApartment(String s){
         SQLiteDatabase db =this.getWritableDatabase();
-        String Insert_Apartment="UPDATE userDetails SET apartment = '"+s+"' WHERE username='"+SaveSharedPreferences.PREF_USER_NAME+"'";
-        SaveSharedPreferences.PREF_Address=s;
+        String Insert_Apartment="UPDATE userDetails SET apartment = '"+s+"' WHERE username='"+SaveSharedPreferences.getUserName(Login.getCtx())+"'";
         db.execSQL(Insert_Apartment);
     }
 
+    public String getUserApartment(String u){
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select apartment from userDetails where username='"+u+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            return cursor.getString(cursor.getColumnIndex("apartment"));
+        }
+        return null;
+    }
+
+    public void saveRatings(float ratings,float count,String address){
+        SQLiteDatabase db =this.getWritableDatabase();
+        String Save_Ratings="UPDATE apartmentDetails SET rating = '"+ratings+"', " +
+                                                        "count = '"+count+"' " +
+                                                        "WHERE address='"+address+"'";
+        db.execSQL(Save_Ratings);
+
+    }
+
+    public Float[] getRatings(String s) {
+
+        Float[] r=new Float[]{0f,0f};
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select rating, count from apartmentDetails where address='"+s+"'";
+        cursor=db.rawQuery(query,null);
+        if (cursor.moveToNext()) {
+            r[0]=cursor.getFloat(cursor.getColumnIndex("rating"));
+            r[1]=cursor.getFloat(cursor.getColumnIndex("count"));
+        }
+        return r;
+    }
+
+    public int getPropertyId(String address){
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select id from apartmentDetails where address='"+address+"'";
+        cursor=db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            return cursor.getInt(cursor.getColumnIndex("id"));
+        }
+        return 0;
+    }
 }

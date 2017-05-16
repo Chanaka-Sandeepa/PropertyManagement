@@ -1,6 +1,7 @@
 package com.example.chanaka.propertymanager.Controllers;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Models.Payment;
@@ -24,8 +25,8 @@ public class User_Handler {
     }
 
     //Create a tenant
-    public void createUser(String[] info,int contact,String apartment){
-        tenant=new Tenant(info[0], info[1], contact, apartment,info[2]);
+    public void createUser(String[] info,int contact){
+        tenant=new Tenant(info[0], info[1], contact, info[2],info[3]);
         dbCon.addTenant(tenant);
 
         Toast.makeText(context, "Tenant Created Successfully",Toast.LENGTH_LONG).show();
@@ -39,7 +40,11 @@ public class User_Handler {
             tenants[i]=a.get(i).getName();
         }
         return tenants;
+    }
 
+    //get a tenant by name
+    public Tenant getTenantByName(String s){
+        return dbCon.getTenant(dbCon.getTenantId(s));
     }
 
     //get the list of notifications
@@ -60,6 +65,8 @@ public class User_Handler {
         return alerts;
 
     }
+
+
 
 
 }

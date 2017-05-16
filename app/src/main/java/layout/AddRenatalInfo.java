@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.Home;
 
 /**
  * Created by chanaka on 3/30/17.
@@ -39,8 +40,9 @@ public class AddRenatalInfo extends Fragment {
 
         rental= (EditText) view.findViewById(R.id.txtRental);
         deposit= (EditText) view.findViewById(R.id.txtDeposit);
-        date= (EditText) view.findViewById(R.id.txtContact);
-        image= (EditText) view.findViewById(R.id.txtContact);
+        date= (EditText) view.findViewById(R.id.txtAvailableDate);
+        date.setText(Home.getDate());
+        image= (EditText) view.findViewById(R.id.txtPropertyImage);
 
         Button btnAdd=(Button)view.findViewById(R.id.addBtn);
         btnAdd.setOnClickListener(

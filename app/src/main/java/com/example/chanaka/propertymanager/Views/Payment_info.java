@@ -13,6 +13,7 @@ import com.example.chanaka.propertymanager.SectionPageAdapter;
 
 import layout.NewPayment;
 import layout.PaymentHistory;
+import layout.TenantPayment;
 
 /**
  * Created by chanaka on 3/28/17.
@@ -22,11 +23,13 @@ public class Payment_info extends AppCompatActivity{
 
     private SectionPageAdapter msectionPage;
     private ViewPager mviewPager;
+    private boolean isTenant=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_info);
 
+        isTenant=getIntent().getBooleanExtra("isTenant",false);
         msectionPage=new SectionPageAdapter(getSupportFragmentManager());
         mviewPager=(ViewPager) findViewById(R.id.container3);
         setUpViewPager(mviewPager);
@@ -48,8 +51,16 @@ public class Payment_info extends AppCompatActivity{
     public void setUpViewPager(ViewPager viewPager){
         SectionPageAdapter adapter=new SectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new PaymentHistory(),"Payment History");
-        adapter.addFragment(new NewPayment(),"New Payment");
+        if(isTenant) {
+            adapter.addFragment(new TenantPayment(), "New Payment");
+        }else{
+            adapter.addFragment(new NewPayment(), "New Payment");
+        }
         viewPager.setAdapter(adapter);
 
+    }
+
+    public void setTenant(boolean tenant) {
+        isTenant = tenant;
     }
 }

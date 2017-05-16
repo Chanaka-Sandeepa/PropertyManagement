@@ -1,139 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="layout.AddNewTenant">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp">
-
-        <TextView
-            android:text="Apartment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lblApartment"
-            android:layout_marginBottom="18dp"
-            android:layout_above="@+id/spinner3"
-            android:layout_alignLeft="@+id/lblAddress"
-            android:layout_alignStart="@+id/lblAddress"
-            android:layout_marginLeft="10dp" />
-
         <TextView
             android:text="Tenant Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
             android:id="@+id/lblName"
-
-
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
             android:id="@+id/txtName"
-            android:layout_below="@+id/lblName"
-            android:layout_alignLeft="@+id/lblName"
-            android:layout_alignStart="@+id/lblName" />
+ />
 
         <TextView
             android:text="Permanant Address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lblAddress"
-            android:layout_below="@id/txtName"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
             />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/txtAddress" />
+
+        <TextView
+            android:text="Apartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblApartment" />
+
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAutoTenantAp" />
 
         <TextView
             android:text="Contact No:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lblContact"
-
-
-            android:layout_below="@+id/spinner3"
-            android:layout_alignLeft="@+id/spinner3"
-            android:layout_alignStart="@+id/spinner3"
-            android:layout_marginTop="26dp" />
+/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:ems="10"
-            android:id="@+id/txtContact"
-            android:layout_below="@+id/lblContact"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="11dp"
-            android:layout_alignLeft="@+id/lblContact"
-            android:layout_alignStart="@+id/lblContact" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtContact"
-            android:layout_alignLeft="@+id/lblApartment"
-            android:layout_alignStart="@+id/lblApartment"
-            android:layout_marginTop="13dp"
-            android:id="@+id/textView9" />
+            android:id="@+id/txtTenantContact"
+ />
 
         <Button
             android:text="Add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAdd"
-            android:layout_below="@+id/txtImage"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/txtAddress"
-            android:layout_marginTop="14dp"
-            android:layout_below="@+id/lblAddress"
-            android:layout_alignLeft="@+id/lblAddress"
-            android:layout_alignStart="@+id/lblAddress" />
+            android:id="@+id/btnAdd" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner3"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/txtAddress"
-            android:layout_alignStart="@+id/txtAddress" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtImage"
-            android:layout_below="@+id/textView9"
-            android:layout_alignLeft="@+id/textView9"
-            android:layout_alignStart="@+id/textView9"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-    </RelativeLayout>
-
-</FrameLayout>
+</LinearLayout>

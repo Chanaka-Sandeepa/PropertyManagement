@@ -9,9 +9,6 @@ import com.example.chanaka.propertymanager.R;
 import layout.ViewApartments;
 
 public class ResultApartments extends AppCompatActivity {
-    public String[] getProperties() {
-        return properties;
-    }
 
     private String[] properties;
 
@@ -23,5 +20,8 @@ public class ResultApartments extends AppCompatActivity {
         setContentView(R.layout.activity_result_apartments);
     }
 
+    public String[] getProperties() {
+        return properties;
+    }
 
 }

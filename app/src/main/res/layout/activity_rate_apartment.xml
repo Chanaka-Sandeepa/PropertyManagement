@@ -12,6 +12,19 @@
     tools:context="com.example.chanaka.propertymanager.Views.RateApartment">
 
     <TextView
+        android:text="Apartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView26" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtRateAddress" />
+
+    <TextView
         android:text="Review Count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,11 +57,11 @@
         android:id="@+id/textView19" />
 
     <RatingBar
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:numStars="5"
-        android:isIndicator="true" />
+        android:isIndicator="false" />
 
     <Button
         android:text="Submit "

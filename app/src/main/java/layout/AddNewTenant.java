@@ -3,59 +3,55 @@ package layout;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import com.example.chanaka.propertymanager.Controllers.Payment_Handler;
+import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.Controllers.User_Handler;
+import com.example.chanaka.propertymanager.Models.Tenant;
 import com.example.chanaka.propertymanager.R;
 
 
 public class AddNewTenant extends Fragment {
-    Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
+    AutoCompleteTextView txtAutoApartment;
     String[] info = new String[3];
-    private String apartment;
-    private EditText name;
-    private EditText address;
-    private EditText contact_no;
-    private EditText image;
+    EditText name;
+    EditText address;
+    EditText contact_no;
+    View view;
+
+
+    String[] apartments;
+    Property_Handler pHan;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_add_new_tenant,container,false);
+        view=inflater.inflate(R.layout.fragment_add_new_tenant,container,false);
 
         name= (EditText) view.findViewById(R.id.txtName);
         address= (EditText) view.findViewById(R.id.txtAddress);
-        contact_no= (EditText) view.findViewById(R.id.txtContact);
-        image= (EditText) view.findViewById(R.id.txtImage);
+        contact_no= (EditText) view.findViewById(R.id.txtTenantContact);
 
-        spinner =(Spinner)view.findViewById(R.id.spinner3);
-        adapter= ArrayAdapter.createFromResource(this.getContext(),R.array.apartments ,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                apartment=parent.getItemAtPosition(pos).toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-        });
-
+        ArrayAdapter<String> adapterApartment;
+        pHan=new Property_Handler(getActivity());
+        apartments = pHan.viewApartments();
+        adapterApartment=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,apartments);
+        txtAutoApartment=(AutoCompleteTextView) view.findViewById(R.id.txtAutoTenantAp);
+        txtAutoApartment.setAdapter(adapterApartment);
         Button btnAdd=(Button)view.findViewById(R.id.btnAdd);
+
+        if( getActivity().getIntent().getExtras() != null){
+            fillDetails(getActivity().getIntent().getStringExtra("tenants") );
+            btnAdd.setText("Update");
+        }
+
         btnAdd.setOnClickListener(
 
                 new View.OnClickListener(){
@@ -70,11 +66,21 @@ public class AddNewTenant extends Fragment {
         return view;
     }
 
-    public void buttonClicked(){
-        info=new String[]{name.getText().toString(),address.getText().toString(),apartment,
-                image.getText().toString()};
+    private void fillDetails(String tenant) {
+        Tenant t= new User_Handler(getActivity()).getTenantByName(tenant);
+        contact_no= (EditText) view.findViewById(R.id.txtTenantContact);
+        name=(EditText)view.findViewById(R.id.txtName);
+        name.setText(t.getName());
+        address.setText(t.getAddress());
+        contact_no.setText(Integer.toString(t.getContactNo()));
+        txtAutoApartment.setText(t.getApartment());
+    }
 
-        new User_Handler(getActivity().getBaseContext()).createUser(info,Integer.parseInt(contact_no.getText().toString()),apartment);
+    public void buttonClicked(){
+        info=new String[]{name.getText().toString(),address.getText().toString(),txtAutoApartment.getText().toString(),
+                "url"};
+
+        new User_Handler(getActivity().getBaseContext()).createUser(info,Integer.parseInt(contact_no.getText().toString()));
 
     }
 

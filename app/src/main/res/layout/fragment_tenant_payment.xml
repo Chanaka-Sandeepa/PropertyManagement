@@ -1,81 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="layout.AddNewTenant">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:text="Tenant Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lblName"
-        />
-
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtAutoName" />
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:text="Apartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblApartment"/>
+        android:id="@+id/textView28" />
 
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtAutoAp" />
-
-    <TextView
-        android:text="Amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lblAddress"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/txtTenantAmount"
-/>
+        android:id="@+id/txtAutoApartment" />
 
     <TextView
         android:text="Payment Type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView32" />
+        android:id="@+id/textView29" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2" />
+        android:id="@+id/spinnerType" />
+
+    <TextView
+        android:text="Amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView30" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/txtTenantAmount" />
 
     <TextView
         android:text="Date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblDate"
-  />
+        android:id="@+id/textView31" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/txtTenantPayDate" />
+        android:id="@+id/txtTenantPayDay" />
 
     <Button
         android:text="Add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAdd"
-/>
-
+        android:id="@+id/btnTenantPayAdd" />
 </LinearLayout>

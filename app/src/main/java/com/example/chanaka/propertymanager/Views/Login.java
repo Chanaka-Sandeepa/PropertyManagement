@@ -1,5 +1,6 @@
 package com.example.chanaka.propertymanager.Views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +16,11 @@ import com.example.chanaka.propertymanager.R;
 public class Login extends AppCompatActivity {
     EditText txtUsername;
     EditText txtPassword;
+    static Context loginCtx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loginCtx=getBaseContext();
         if(SaveSharedPreferences.getUserName(Login.this).length() != 0)
         {
             loginButtonClicked(SaveSharedPreferences.getUserName(Login.this),SaveSharedPreferences.getPassword(Login.this));
@@ -45,6 +48,10 @@ public class Login extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public static Context getCtx() {
+        return loginCtx;
     }
 
     public void loginButtonClicked(String username, String password){

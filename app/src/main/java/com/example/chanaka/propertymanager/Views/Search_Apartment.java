@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Controllers.DatabaseConnector;
+import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.Models.Property;
 import com.example.chanaka.propertymanager.R;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -48,7 +49,9 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
     double longitude;
     String strAdd;
     EditText txtAddress;
+    Property_Handler pHan;
     ArrayList<Property> properties;
+    Property[] propertyArray;
     Location l = null;
 
 
@@ -58,8 +61,7 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_search__apartment);
         txtAddress = (EditText) findViewById(R.id.txtAddress);
 
-
-
+        pHan=new Property_Handler(this);
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragmentMap);
 
         mapFragment.getMapAsync(this);
@@ -99,15 +101,27 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
 
     private void buttonClicked() {
 
-
         searchProperties(txtAddress.getText().toString());
-        String[] sProperties=new String[properties.size()];
-        for(int i=0;i<properties.size();i++){
-            sProperties[i]=properties.get(i).getAddress();
+        String[] sProperties=new String[propertyArray.length];
+        for(int i=0;i<propertyArray.length;i++){
+            sProperties[i]=propertyArray[i].getAddress();
         }
         Intent i=new Intent(getApplicationContext(),ResultApartments.class);
         i.putExtra("properties",sProperties);
         startActivity(i);
+    }
+
+    public void searchProperties(String address){
+        properties=new ArrayList<Property>();
+        DatabaseConnector dbCon=DatabaseConnector.getInstance(getBaseContext());
+        properties=dbCon.getNearbyProperties(address);
+        propertyArray=new Property[properties.size()];
+
+        for(int i=0;i<properties.size();i++){
+            propertyArray[i]=properties.get(i);
+        }
+        //sort according to ratings
+        propertyArray=pHan.sortApartments(propertyArray);
     }
 
     @Override
@@ -196,11 +210,6 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
                 tag);
     }
 
-    public void searchProperties(String address){
-        properties=new ArrayList<Property>();
-        DatabaseConnector dbCon=DatabaseConnector.getInstance(getBaseContext());
-        properties=dbCon.getNearbyProperties(address);
-    }
 
     public void updateLoc(){
 
