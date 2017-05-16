@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/name_no__lbl_txt"
+        android:hint="Name/No"
         android:id="@+id/txtNo"
         />
 
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/street_name__lbl_txt"
+        android:hint="@string/street_name__lbl_txt"
         android:id="@+id/txtStreet"
 />
 
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/city_lbl_txt"
+        android:hint="@string/city_lbl_txt"
         android:id="@+id/txtCity"
  />
 
