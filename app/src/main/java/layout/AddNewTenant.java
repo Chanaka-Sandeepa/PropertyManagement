@@ -1,8 +1,10 @@
 package layout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.Controllers.User_Handler;
 import com.example.chanaka.propertymanager.Models.Tenant;
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.Home;
 
 
 public class AddNewTenant extends Fragment {
@@ -77,12 +80,38 @@ public class AddNewTenant extends Fragment {
     }
 
     public void buttonClicked(){
-        info=new String[]{name.getText().toString(),address.getText().toString(),txtAutoApartment.getText().toString(),
-                "url"};
+        String sName=name.getText().toString();
+        String sAddress=address.getText().toString();
+        String sApartment=txtAutoApartment.getText().toString();
+        String sContact=contact_no.getText().toString();
+        String[] inputs={sName,sAddress,sApartment,sContact};
 
-        new User_Handler(getActivity().getBaseContext()).createUser(info,Integer.parseInt(contact_no.getText().toString()));
+        if(checkInputValidity(inputs)) {
+            info = new String[]{name.getText().toString(), address.getText().toString(), txtAutoApartment.getText().toString(),
+                    "url"};
+
+            new User_Handler(getActivity().getBaseContext()).createUser(info, Integer.parseInt(contact_no.getText().toString()));
+            startActivity(new Intent(getActivity(), Home.class));
+            getActivity().finish();
+        }
 
     }
 
+    public boolean checkInputValidity(String[] inputs){
+        if(TextUtils.isEmpty(inputs[0])){
+            name.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[1])){
+            address.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[2])){
+            txtAutoApartment.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[3])){
+            contact_no.setError("Enter a valid value...");
+            return false;
+        }
+        return true;
+    }
 
 }

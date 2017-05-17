@@ -17,6 +17,7 @@ public class Property {
     private double deposit;
     private String date;
     private String image;
+    private String dueDate;
     private float rating;
 
     public Property(String address, String propertyType, String sqFootage, String desc, double rental, double deposit, String date, String image) {
@@ -101,6 +102,14 @@ public class Property {
 
     public String getImage() {
         return image;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public float getRating() {

@@ -1,11 +1,13 @@
 package layout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ public class ViewApartments extends Fragment {
     ListAdapter adapter;
     String[] apartments;
     Property_Handler pHan;
+    AlertDialog alertRemove;
     public static boolean isSearch=false;
     @Nullable
     @Override
@@ -41,6 +44,7 @@ public class ViewApartments extends Fragment {
         pHan=new Property_Handler(getContext());
 
         listView=(ListView)view.findViewById(R.id.lstApartments);
+        listView.setLongClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -50,15 +54,16 @@ public class ViewApartments extends Fragment {
             }
         });
 
-        if(isSearch){
-            ResultApartments activity=(ResultApartments)getActivity();
-            apartments=activity.getProperties();
-        }else {
-            apartments = pHan.viewApartments();
-        }
-        adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
-
-        listView.setAdapter(adapter);
+        refreshList();
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                createAlert(listView.getItemAtPosition(pos).toString());
+                alertRemove.show();
+                return true;
+            }
+        });
 
         return view;
     }
@@ -70,7 +75,47 @@ public class ViewApartments extends Fragment {
         startActivity(i);
     }
 
+    public void removeProperty(String address){
+        pHan.deleteProperty(address);
+        refreshList();
+    }
 
+    public void createAlert(final String address){
+        final String s=address;
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure You want to remove the property?");
+        builder1.setCancelable(true);
 
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        removeProperty(s);
+                    }
+                });
 
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        alertRemove= builder1.create();
+
+    }
+
+    public void refreshList(){
+        if(isSearch){
+            ResultApartments activity=(ResultApartments)getActivity();
+            apartments=activity.getProperties();
+            listView.setLongClickable(false);
+        }else {
+            apartments = pHan.viewApartments();
+        }
+        adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
+
+        listView.setAdapter(adapter);
+    }
 }

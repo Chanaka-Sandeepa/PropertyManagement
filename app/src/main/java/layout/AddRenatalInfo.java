@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class AddRenatalInfo extends Fragment {
     private EditText deposit;
     private EditText date;
     private EditText image;
+    private EditText dueDate;
     Double[] rental_info =new Double[2];
     String[] other_info = new String[2];
 
@@ -43,6 +45,7 @@ public class AddRenatalInfo extends Fragment {
         date= (EditText) view.findViewById(R.id.txtAvailableDate);
         date.setText(Home.getDate());
         image= (EditText) view.findViewById(R.id.txtPropertyImage);
+        dueDate= (EditText) view.findViewById(R.id.txtDueDate);
 
         Button btnAdd=(Button)view.findViewById(R.id.addBtn);
         btnAdd.setOnClickListener(
@@ -57,11 +60,20 @@ public class AddRenatalInfo extends Fragment {
     }
 
     public void buttonClicked(){
-        rental_info=new Double[]{Double.parseDouble(rental.getText().toString()),Double.parseDouble(deposit.getText().toString())};
-        other_info=new String[]{date.getText().toString(),image.getText().toString()};
 
-        addRentalInfoListener.addNewPropertyFragment(rental_info,other_info);
-        addRentalInfoListener.goToHome();
+        String sRent=rental.getText().toString();
+        String sDeposit=deposit.getText().toString();
+        String sDate=date.getText().toString();
+        String sImage=image.getText().toString();
+        String sDueDate=dueDate.getText().toString();
+        String[] inputs={sRent,sDeposit,sDate,sDueDate,sImage};
+
+        if(checkInputValidity(inputs)) {
+            rental_info = new Double[]{Double.parseDouble(rental.getText().toString()), Double.parseDouble(deposit.getText().toString())};
+            other_info = new String[]{date.getText().toString(), sDueDate,image.getText().toString()};
+            addRentalInfoListener.addNewPropertyFragment(rental_info, other_info);
+            addRentalInfoListener.goToHome();
+        }
 
     }
 
@@ -70,5 +82,22 @@ public class AddRenatalInfo extends Fragment {
     public void onAttach(Activity activity) {
         addRentalInfoListener = (AddRentalInfoListener) activity;
         super.onAttach(activity);
+    }
+
+    public boolean checkInputValidity(String[] inputs){
+        if(TextUtils.isEmpty(inputs[0])){
+            rental.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[1])){
+            deposit.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[2])){
+            date.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[3])){
+            image.setError("Enter a valid value...");
+            return false;
+        }
+        return true;
     }
 }

@@ -34,6 +34,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789."
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/txtTenantAmount" />
@@ -48,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"
+        android:digits="0123456789."
         android:ems="10"
         android:id="@+id/txtTenantPayDay" />
 

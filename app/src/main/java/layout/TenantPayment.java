@@ -1,8 +1,10 @@
 package layout;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.chanaka.propertymanager.Controllers.DatabaseConnector;
 import com.example.chanaka.propertymanager.Controllers.Payment_Handler;
 import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.TenantHome;
 
 /**
  * Created by chanaka on 5/16/17.
@@ -85,11 +88,33 @@ public class TenantPayment extends android.support.v4.app.Fragment {
 
     }
     public void buttonClicked(){
-        String[] stringinfo=new String[]{payType,txtTenantPayDay.getText().toString()};
-        int[] intinfo=new int[]{1,dbCon.getPropertyId(txtAutoApartment.getText().toString())};
 
-        new Payment_Handler(getActivity().getBaseContext()).createPayment(stringinfo,Float.parseFloat(txtTenantAmount.getText().toString()),intinfo);
+        String sApartment=txtAutoApartment.getText().toString();
+        String sAmount=txtTenantAmount.getText().toString();
+        String sDate=txtTenantPayDay.getText().toString();
+        String[] inputs={sApartment,sAmount,sDate};
 
+        if(checkInputValidity(inputs)) {
+            String[] stringinfo = new String[]{payType, txtTenantPayDay.getText().toString()};
+            int[] intinfo = new int[]{1, dbCon.getPropertyId(txtAutoApartment.getText().toString())};
+            new Payment_Handler(getActivity().getBaseContext()).createPayment(stringinfo, Float.parseFloat(txtTenantAmount.getText().toString()), intinfo);
+            startActivity(new Intent(getActivity(), TenantHome.class));
+            getActivity().finish();
+        }
+    }
+
+    public boolean checkInputValidity(String[] inputs){
+        if(TextUtils.isEmpty(inputs[0])){
+            txtAutoApartment.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[1])){
+            txtTenantAmount.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[2])){
+            txtTenantPayDay.setError("Enter a valid value...");
+            return false;
+        }
+        return true;
     }
 
 }

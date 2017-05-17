@@ -102,13 +102,17 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
     private void buttonClicked() {
 
         searchProperties(txtAddress.getText().toString());
-        String[] sProperties=new String[propertyArray.length];
-        for(int i=0;i<propertyArray.length;i++){
-            sProperties[i]=propertyArray[i].getAddress();
+        if(propertyArray.length==0){
+            Toast.makeText(this,"No Results in this area...!",Toast.LENGTH_LONG).show();
+        }else {
+            String[] sProperties = new String[propertyArray.length];
+            for (int i = 0; i < propertyArray.length; i++) {
+                sProperties[i] = propertyArray[i].getAddress();
+            }
+            Intent i = new Intent(getApplicationContext(), ResultApartments.class);
+            i.putExtra("properties", sProperties);
+            startActivity(i);
         }
-        Intent i=new Intent(getApplicationContext(),ResultApartments.class);
-        i.putExtra("properties",sProperties);
-        startActivity(i);
     }
 
     public void searchProperties(String address){

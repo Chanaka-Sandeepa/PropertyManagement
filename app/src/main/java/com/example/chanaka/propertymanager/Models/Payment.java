@@ -10,6 +10,7 @@ public class Payment {
     private int tenant;
     private int property;
     private String date;
+    private int id;
 
     public Payment(float amount, String type, int tenant, int property, String date) {
         this.amount = amount;
@@ -17,6 +18,14 @@ public class Payment {
         this.tenant = tenant;
         this.property = property;
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public float getAmount() {

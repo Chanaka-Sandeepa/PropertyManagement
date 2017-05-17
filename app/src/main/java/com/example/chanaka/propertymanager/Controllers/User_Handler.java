@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Models.Payment;
 import com.example.chanaka.propertymanager.Models.Tenant;
+import com.example.chanaka.propertymanager.Views.Login;
 
 import java.util.ArrayList;
 
@@ -47,12 +48,17 @@ public class User_Handler {
         return dbCon.getTenant(dbCon.getTenantId(s));
     }
 
+    //delete tenant
+    public void deleteProperty(String name){
+        dbCon.removeRecord("tenantsDetails" , "name=?", new String[]{name});
+    }
+
     //get the list of notifications
     public String[] getNotifications(){
         ArrayList<Payment> a=dbCon.getPayments();
         String[] alerts=new String[3];
         float totalAmount=0;
-        alerts[0]= "Last Payment             "+a.get(0).getAmount()+".00";
+        alerts[0]= "Last Payment             "+a.get(a.size()-1).getAmount()+".00";
 
         for (int i=0;  i<a.size();  i++) {
             totalAmount += a.get(i).getAmount();
@@ -60,13 +66,10 @@ public class User_Handler {
 
         alerts[1]= "Total amount payed       "+totalAmount+".00";
 
-        alerts[2]= "Next due date            "+dbCon.getProperty(1).getDate();
+        alerts[2]= "Next due date            "+dbCon.getPropertyByAddress(dbCon.getUserApartment(SaveSharedPreferences.getUserName(Login.getCtx()))).getDueDate();;
 
         return alerts;
 
     }
-
-
-
 
 }

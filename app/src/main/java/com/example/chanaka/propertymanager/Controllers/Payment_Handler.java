@@ -48,4 +48,15 @@ public class Payment_Handler {
 
     }
 
+    public Payment getPayment(int id){
+        ArrayList<Payment> a=dbCon.getPayments();
+
+        for(int i=0;i<a.size();i++){
+            if(id==a.get(i).getId()){
+                return a.get(i);
+            }
+        }
+        return null;
+    }
+
 }

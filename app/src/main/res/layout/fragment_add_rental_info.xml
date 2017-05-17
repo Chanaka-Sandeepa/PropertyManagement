@@ -48,6 +48,19 @@
 />
 
     <TextView
+        android:text="Rental Due Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/txtDueDate" />
+
+    <TextView
         android:text="Photos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

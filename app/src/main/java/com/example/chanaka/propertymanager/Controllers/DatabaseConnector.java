@@ -41,6 +41,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Apartment_image="image";
     private final static String Key_Apartment_rating="rating";
     private final static String Key_Apartment_count="count";
+    private final static String Key_Apartment_DueDate="due_date";
 
     //Tenants Table
     private final static String Table_Tenant_Details="tenantsDetails";
@@ -100,6 +101,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_AvailableDate+" TEXT,"
                 +Key_Apartment_rating+" FLOAT,"
                 +Key_Apartment_count+" INTEGER,"
+                +Key_Apartment_DueDate+" TEXT,"
                 +Key_Apartment_image+" TEXT"+")";
 
         //create Tenants table
@@ -153,6 +155,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         values.put(Key_Rental,property.getRental());
         values.put(Key_Deposit,property.getDeposit());
         values.put(Key_Apartment_image,property.getImage());
+        values.put(Key_Apartment_DueDate,property.getDueDate());
 
         db.insert(Table_Apartment_Details,null,values);
         db.close();
@@ -185,6 +188,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex("sq_footage")),cursor.getString(cursor.getColumnIndex("description")),
                         cursor.getInt(cursor.getColumnIndex("rental")),cursor.getInt(cursor.getColumnIndex("deposit")),
                         cursor.getString(cursor.getColumnIndex("available_date")),cursor.getString(cursor.getColumnIndex("image")));
+                p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
                 properties.add(p);
             }
         }
@@ -203,6 +207,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
                         cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
                         cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
                 return p;
             }
         }
@@ -212,7 +217,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     //get a specific apartemnt by address
     public Property getPropertyByAddress(String address){
-        SQLiteDatabase db =this.getReadableDatabase();
+
+        SQLiteDatabase db=this.getReadableDatabase();
         String query="select * from apartmentDetails where address='"+address+"'";
         cursor=db.rawQuery(query,null);
         while(cursor.moveToNext()){
@@ -221,6 +227,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
                         cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
                         cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
                 return p;
             }
         }
@@ -235,12 +242,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         String query="select * from apartmentDetails where address like '%"+s+"%'";
         cursor=db.rawQuery(query,null);
         while(cursor.moveToNext()){
-            Log.e("aa","aa");
             if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
                 Property p = new Property(cursor.getString(cursor.getColumnIndex("address")), cursor.getString(cursor.getColumnIndex("type")),
                         cursor.getString(cursor.getColumnIndex("sq_footage")), cursor.getString(cursor.getColumnIndex("description")),
                         cursor.getInt(cursor.getColumnIndex("rental")), cursor.getInt(cursor.getColumnIndex("deposit")),
                         cursor.getString(cursor.getColumnIndex("available_date")), cursor.getString(cursor.getColumnIndex("image")));
+                p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
                 properties.add(p);
             }
         }
@@ -299,6 +306,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 Payment p=new Payment(cursor.getFloat(cursor.getColumnIndex("amount")),cursor.getString(cursor.getColumnIndex("payment_type")),
                         cursor.getInt(cursor.getColumnIndex("tenant_id")),cursor.getInt(cursor.getColumnIndex("apartment")),
                         cursor.getString(cursor.getColumnIndex("date")));
+                p.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 payments.add(p);
             }
         }
@@ -424,4 +432,15 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         return 0;
     }
+
+    public void removeRecord(String table, String where, String arg[]){
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete(table,where,arg);
+    }
+
+    public void removeRecordById(String table, String where, String[] arg){
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete(table,where,arg);
+    }
+
 }

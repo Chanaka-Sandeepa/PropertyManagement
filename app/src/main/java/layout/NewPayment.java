@@ -1,8 +1,10 @@
 package layout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,11 +104,37 @@ public class NewPayment extends Fragment {
     }
     public void buttonClicked(){
 
-        DatabaseConnector d=DatabaseConnector.getInstance(getActivity());
-        stringinfo=new String[]{type,date.getText().toString()};
-        intinfo=new int[]{d.getTenantId(name.getText().toString()),d.getPropertyId(apartment.getText().toString())};
+        String sName=name.getText().toString();
+        String sApartment=apartment.getText().toString();
+        String sAmount=amount.getText().toString();
+        String sDate=date.getText().toString();
+        String[] inputs={sName,sApartment,sAmount,sDate};
 
-        new Payment_Handler(getActivity().getBaseContext()).createPayment(stringinfo,Float.parseFloat(amount.getText().toString()),intinfo);
+        if(checkInputValidity(inputs)) {
+            DatabaseConnector d = DatabaseConnector.getInstance(getActivity());
+            stringinfo = new String[]{type, date.getText().toString()};
+            intinfo = new int[]{d.getTenantId(name.getText().toString()), d.getPropertyId(apartment.getText().toString())};
+            new Payment_Handler(getActivity().getBaseContext()).createPayment(stringinfo,Float.parseFloat(amount.getText().toString()),intinfo);
+            startActivity(new Intent(getActivity(),Home.class));
+            getActivity().finish();
 
+        }
+    }
+
+    public boolean checkInputValidity(String[] inputs){
+        if(TextUtils.isEmpty(inputs[0])){
+            name.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[1])){
+            apartment.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[2])){
+            amount.setError("Enter a valid value...");
+            return false;
+        }else if(TextUtils.isEmpty(inputs[3])){
+            date.setError("Enter a valid value...");
+            return false;
+        }
+        return true;
     }
 }

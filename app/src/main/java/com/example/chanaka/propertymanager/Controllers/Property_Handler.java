@@ -27,7 +27,8 @@ public class Property_Handler {
     //Create a property
     public void createProperty(String[] basicInf, Double[] rentalInf, String[] otherInf){
         property=new Property(basicInf[0],basicInf[3],basicInf[1],basicInf[2],rentalInf[0],
-                rentalInf[1],otherInf[0],otherInf[1]);
+                rentalInf[1],otherInf[0],otherInf[2]);
+        property.setDueDate(otherInf[1]);
         dbCon.addProperty(property);
 
         Toast.makeText(context, "Property Created Successfully",Toast.LENGTH_LONG).show();
@@ -42,6 +43,10 @@ public class Property_Handler {
         }
         return apartments;
 
+    }
+
+    public void deleteProperty(String address){
+        dbCon.removeRecord("apartmentDetails" , "address=?", new String[]{address});
     }
 
     public Property[] sortApartments(Property[] p){
