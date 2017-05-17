@@ -7,6 +7,7 @@ package com.example.chanaka.propertymanager.Models;
 public class Tenant extends User {
     private String apartment;
     private String image;
+    private String owner;
 
     public Tenant(String name,String address,int contactNo,String apartment, String image) {
         this.name=name;
@@ -30,5 +31,13 @@ public class Tenant extends User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

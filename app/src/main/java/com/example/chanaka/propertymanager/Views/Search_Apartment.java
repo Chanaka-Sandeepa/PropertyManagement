@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -85,6 +86,16 @@ public class Search_Apartment extends AppCompatActivity implements OnMapReadyCal
                 break;
             }
         }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fbHome);
+        fab.setImageResource(R.drawable.home);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Search_Apartment.this,TenantHome.class));
+
+            }
+        });
 
         Button btnSearch=(Button)findViewById(R.id.btnMapSearch);
         btnSearch.setOnClickListener(

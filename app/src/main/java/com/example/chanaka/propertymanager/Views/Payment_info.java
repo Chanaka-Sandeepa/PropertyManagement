@@ -42,7 +42,11 @@ public class Payment_info extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Payment_info.this,Home.class));
+                if(isTenant){
+                    startActivity(new Intent(Payment_info.this,TenantHome.class));
+                }else {
+                    startActivity(new Intent(Payment_info.this, Home.class));
+                }
 
             }
         });

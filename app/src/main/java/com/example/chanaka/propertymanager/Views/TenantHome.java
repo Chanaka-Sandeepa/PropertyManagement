@@ -1,6 +1,7 @@
 package com.example.chanaka.propertymanager.Views;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,9 @@ public class TenantHome extends AppCompatActivity {
         setContentView(R.layout.activity_tenant_home);
 
         Button btnApartment=(Button)findViewById(R.id.btnApartment);
+        Drawable imgApartment = this.getResources().getDrawable(R.drawable.home);
+        imgApartment.setBounds(0, 0, 120, 100);
+        btnApartment.setCompoundDrawables(null, imgApartment, null, null);
         btnApartment.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -40,6 +44,9 @@ public class TenantHome extends AppCompatActivity {
         );
 
         Button btnPayment=(Button)findViewById(R.id.btnPayment);
+        Drawable imgPay = this.getResources().getDrawable(R.drawable.home);
+        imgPay.setBounds(0, 0, 120, 100);
+        btnPayment.setCompoundDrawables(null, imgPay, null, null);
         btnPayment.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -49,6 +56,9 @@ public class TenantHome extends AppCompatActivity {
         );
 
         Button btnRate=(Button)findViewById(R.id.btnRate);
+        Drawable imgRate = this.getResources().getDrawable(R.drawable.home);
+        imgRate.setBounds(0, 0, 120, 100);
+        btnRate.setCompoundDrawables(null, imgRate, null, null);
         btnRate.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -58,6 +68,9 @@ public class TenantHome extends AppCompatActivity {
         );
 
         Button btnSearch=(Button)findViewById(R.id.btnSearch);
+        Drawable imgSearch = this.getResources().getDrawable(R.drawable.home);
+        imgSearch.setBounds(0, 0, 120, 100);
+        btnSearch.setCompoundDrawables(null, imgSearch, null, null);
         btnSearch.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){

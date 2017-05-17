@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Models.Property;
+import com.example.chanaka.propertymanager.Views.Login;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class Property_Handler {
         property=new Property(basicInf[0],basicInf[3],basicInf[1],basicInf[2],rentalInf[0],
                 rentalInf[1],otherInf[0],otherInf[2]);
         property.setDueDate(otherInf[1]);
+        property.setOwner(SaveSharedPreferences.getUserName(Login.getCtx()));
         dbCon.addProperty(property);
 
         Toast.makeText(context, "Property Created Successfully",Toast.LENGTH_LONG).show();
@@ -37,6 +39,17 @@ public class Property_Handler {
     //get the list of saved apartments
     public String[] viewApartments(){
         ArrayList<Property> a=dbCon.getApartments();
+        String[] apartments=new String[a.size()];
+        for (int i=0;i<a.size();i++){
+            apartments[i]=a.get(i).getAddress();
+        }
+        return apartments;
+
+    }
+
+    //get all the apartments in database
+    public String[] viewAllApartments(){
+        ArrayList<Property> a=dbCon.getAllApartments();
         String[] apartments=new String[a.size()];
         for (int i=0;i<a.size();i++){
             apartments[i]=a.get(i).getAddress();

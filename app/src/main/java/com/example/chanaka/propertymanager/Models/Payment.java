@@ -11,6 +11,7 @@ public class Payment {
     private int property;
     private String date;
     private int id;
+    private String user;
 
     public Payment(float amount, String type, int tenant, int property, String date) {
         this.amount = amount;
@@ -66,5 +67,13 @@ public class Payment {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String owner) {
+        this.user = owner;
     }
 }

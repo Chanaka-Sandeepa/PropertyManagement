@@ -2,6 +2,7 @@ package com.example.chanaka.propertymanager.Views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.Controllers.SaveSharedPreferences;
 import com.example.chanaka.propertymanager.Models.Property;
 import com.example.chanaka.propertymanager.R;
+
+import layout.ViewApartments;
 
 public class MyApartment extends AppCompatActivity {
     private AutoCompleteTextView txtAutoSearch;
@@ -54,7 +57,11 @@ public class MyApartment extends AppCompatActivity {
 
         ArrayAdapter<String> adapter;
         pHan=new Property_Handler(getBaseContext());
-        apartments = pHan.viewApartments();
+        if(ViewApartments.isSearch){
+            apartments=pHan.viewAllApartments();
+        }else {
+            apartments = pHan.viewApartments();
+        }
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,apartments);
         txtAutoSearch=(AutoCompleteTextView)findViewById(R.id.txtAutoSearch);
         txtAutoSearch.setAdapter(adapter);
@@ -85,6 +92,16 @@ public class MyApartment extends AppCompatActivity {
                     }
                 }
         );
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fbHome);
+        fab.setImageResource(R.drawable.home);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyApartment.this,TenantHome.class));
+
+            }
+        });
 
         createAlert();
         setInputsDisable();
@@ -124,6 +141,7 @@ public class MyApartment extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dbCon.setApartment(myAddress.getText().toString());
                         Toast.makeText(getBaseContext(),"Apartment assigned succeffully...!",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MyApartment.this,TenantHome.class));
                     }
                 });
 

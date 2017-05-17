@@ -18,6 +18,7 @@ public class Property {
     private String date;
     private String image;
     private String dueDate;
+    private String owner;
     private float rating;
 
     public Property(String address, String propertyType, String sqFootage, String desc, double rental, double deposit, String date, String image) {
@@ -115,5 +116,13 @@ public class Property {
     public float getRating() {
         DatabaseConnector d=DatabaseConnector.getInstance(Login.getCtx());
         return d.getRatings(address)[0];
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

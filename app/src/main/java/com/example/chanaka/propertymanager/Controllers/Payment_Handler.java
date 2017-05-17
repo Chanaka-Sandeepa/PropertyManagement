@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.chanaka.propertymanager.Models.Payment;
 import com.example.chanaka.propertymanager.Models.Property;
+import com.example.chanaka.propertymanager.Views.Login;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +28,10 @@ public class Payment_Handler {
     //Create a payment
     public void createPayment(String[] stringinfo,float amount,int[] intinfo){
         payment=new Payment(amount, stringinfo[0], intinfo[0], intinfo[1], stringinfo[1]);
+        payment.setUser(SaveSharedPreferences.getUserName(Login.getCtx()));
+        Log.e("pay","user");
+        Log.e("pay",SaveSharedPreferences.getUserName(Login.getCtx()));
         dbCon.addPayment(payment);
-
         Toast.makeText(context, "Payment Created Successfully",Toast.LENGTH_LONG).show();
     }
 

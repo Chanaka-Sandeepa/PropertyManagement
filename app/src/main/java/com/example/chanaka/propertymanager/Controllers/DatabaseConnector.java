@@ -41,6 +41,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Apartment_image="image";
     private final static String Key_Apartment_rating="rating";
     private final static String Key_Apartment_count="count";
+    private final static String Key_Owner="owner";
     private final static String Key_Apartment_DueDate="due_date";
 
     //Tenants Table
@@ -51,6 +52,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Tenant_Permanant_Address="permanant_address";
     private final static String Key_Tenant_Apartment="apartment";
     private final static String Key_Tenant_Contact="contact_number";
+    private final static String Key_Tenant_Owner="owner";
     private final static String Key_Tenant_image="image";
 
     //Tenants Payment Table
@@ -61,6 +63,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private final static String Key_Payment_Tenant="tenant_id";
     private final static String Key_Payment_Apartment="apartment";
     private final static String Key_Payment_Date="date";
+    private final static String Key_Payment_User="user";
     private final static String Key_Payment_Type="payment_type";
 
     //User Table
@@ -102,6 +105,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_Apartment_rating+" FLOAT,"
                 +Key_Apartment_count+" INTEGER,"
                 +Key_Apartment_DueDate+" TEXT,"
+                +Key_Owner+" TEXT,"
                 +Key_Apartment_image+" TEXT"+")";
 
         //create Tenants table
@@ -111,6 +115,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_Tenant_Permanant_Address+" TEXT,"
                 +Key_Tenant_Apartment+" TEXT,"
                 +Key_Tenant_Contact+" INTEGER,"
+                +Key_Tenant_Owner+" TEXT,"
                 +Key_Tenant_image+" TEXT" +")";
 
         //create Payments table
@@ -120,6 +125,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 +Key_Payment_Tenant+" INTEGER,"
                 +Key_Payment_Apartment+" INTEGER,"
                 +Key_Payment_Date+" TEXT,"
+                +Key_Payment_User+" TEXT,"
                 +Key_Payment_Type+" TEXT" +")";
 
         //create User table
@@ -156,6 +162,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         values.put(Key_Deposit,property.getDeposit());
         values.put(Key_Apartment_image,property.getImage());
         values.put(Key_Apartment_DueDate,property.getDueDate());
+        values.put(Key_Owner,property.getOwner());
 
         db.insert(Table_Apartment_Details,null,values);
         db.close();
@@ -178,6 +185,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     //get all the saved apartments from the database
     public ArrayList<Property> getApartments(){
+
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select * from apartmentDetails";
         cursor=db.rawQuery(query,null);
@@ -189,11 +197,37 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndex("rental")),cursor.getInt(cursor.getColumnIndex("deposit")),
                         cursor.getString(cursor.getColumnIndex("available_date")),cursor.getString(cursor.getColumnIndex("image")));
                 p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
+                if(!cursor.isNull(cursor.getColumnIndex("owner"))) {
+                    p.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                }
+                if(SaveSharedPreferences.getUserName(Login.getCtx()).equals(p.getOwner())) {
+                    properties.add(p);
+                }
+            }
+        }
+        return properties;
+    }
+//get all the apartments in the database
+    public ArrayList<Property> getAllApartments(){
+
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query="select * from apartmentDetails";
+        cursor=db.rawQuery(query,null);
+        ArrayList<Property> properties=new ArrayList<Property>();
+        while(cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("address"))!=null) {
+                Property p=new Property(cursor.getString(cursor.getColumnIndex("address")),cursor.getString(cursor.getColumnIndex("type")),
+                        cursor.getString(cursor.getColumnIndex("sq_footage")),cursor.getString(cursor.getColumnIndex("description")),
+                        cursor.getInt(cursor.getColumnIndex("rental")),cursor.getInt(cursor.getColumnIndex("deposit")),
+                        cursor.getString(cursor.getColumnIndex("available_date")),cursor.getString(cursor.getColumnIndex("image")));
+                p.setDueDate(cursor.getString(cursor.getColumnIndex("due_date")));
+                if(!cursor.isNull(cursor.getColumnIndex("owner"))) {
+                    p.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                }
                 properties.add(p);
             }
         }
         return properties;
-
     }
 
     //get a specific apartemnt
@@ -273,6 +307,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         values.put(Key_Tenant_Apartment,tenant.getApartment());
         values.put(Key_Tenant_Contact,tenant.getContactNo());
         values.put(Key_Tenant_image,tenant.getImage());
+        values.put(Key_Tenant_Owner,tenant.getOwner());
 
         db.insert(Table_Tenant_Details,null,values);
         db.close();
@@ -281,7 +316,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     //save new payment
     public void addPayment(Payment payment) {
-        SQLiteDatabase db =this.getWritableDatabase();
+         SQLiteDatabase db =this.getWritableDatabase();
 
         ContentValues values=new ContentValues();
         values.put(Key_Payment_amount,payment.getAmount());
@@ -289,6 +324,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         values.put(Key_Payment_Tenant,payment.getTenant());
         values.put(Key_Payment_Date,payment.getDate());
         values.put(Key_Payment_Type,payment.getType());
+        values.put(Key_Payment_User,payment.getUser());
 
         db.insert(Table_Payment_Details,null,values);
         db.close();
@@ -297,6 +333,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     //get all the saved payments
     public ArrayList<Payment> getPayments() {
+
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select * from paymentDetails";
         cursor=db.rawQuery(query,null);
@@ -307,7 +344,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndex("tenant_id")),cursor.getInt(cursor.getColumnIndex("apartment")),
                         cursor.getString(cursor.getColumnIndex("date")));
                 p.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                payments.add(p);
+                if(!cursor.isNull(cursor.getColumnIndex("user"))) {
+                    p.setUser(cursor.getString(cursor.getColumnIndex("user")));
+                }
+                if(SaveSharedPreferences.getUserName(Login.getCtx()).equals(p.getUser())) {
+                    payments.add(p);
+                }
             }
         }
         return payments;
@@ -324,10 +366,14 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 Tenant t=new Tenant(cursor.getString(cursor.getColumnIndex("name")),cursor.getString(cursor.getColumnIndex("permanant_address")),
                         cursor.getInt(cursor.getColumnIndex("contact_number")),cursor.getString(cursor.getColumnIndex("apartment")),
                         cursor.getString(cursor.getColumnIndex("image")));
-                tenants.add(t);
+                if(!cursor.isNull(cursor.getColumnIndex("owner"))) {
+                    t.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                }
+                if(SaveSharedPreferences.getUserName(Login.getCtx()).equals(t.getOwner())) {
+                    tenants.add(t);
+                }
             }
         }
-        Log.e("aa","return tenant");
         return tenants;
     }
 
@@ -346,6 +392,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         return null;
     }
+
     public int getTenantId(String name){
         SQLiteDatabase db =this.getReadableDatabase();
         String query="select id from tenantsDetails where name='"+name+"'";
@@ -355,8 +402,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         return 0;
     }
-
-
 
     public void addUser(String name, String uname, String type, String password) {
         SQLiteDatabase db =this.getWritableDatabase();

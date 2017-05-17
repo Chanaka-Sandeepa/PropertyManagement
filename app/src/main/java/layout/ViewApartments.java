@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class ViewApartments extends Fragment {
     String[] apartments;
     Property_Handler pHan;
     AlertDialog alertRemove;
+    Toolbar toolbar;
     public static boolean isSearch=false;
     @Nullable
     @Override
@@ -43,6 +45,7 @@ public class ViewApartments extends Fragment {
         View view=inflater.inflate(R.layout.fragment_apartment_list,container,false);
         pHan=new Property_Handler(getContext());
 
+        toolbar=(Toolbar)view.findViewById(R.id.toolbar);
         listView=(ListView)view.findViewById(R.id.lstApartments);
         listView.setLongClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -111,9 +114,11 @@ public class ViewApartments extends Fragment {
             ResultApartments activity=(ResultApartments)getActivity();
             apartments=activity.getProperties();
             listView.setLongClickable(false);
+            toolbar.setTitle("Search Results");
         }else {
             apartments = pHan.viewApartments();
         }
+
         adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,apartments);
 
         listView.setAdapter(adapter);

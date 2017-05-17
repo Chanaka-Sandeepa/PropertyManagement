@@ -1,5 +1,7 @@
 package com.example.chanaka.propertymanager.Views;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +52,16 @@ public class RateApartment extends AppCompatActivity {
         );
 
         getApartmentRatings();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fbHome);
+        fab.setImageResource(R.drawable.home);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RateApartment.this,TenantHome.class));
+
+            }
+        });
 
     }
 

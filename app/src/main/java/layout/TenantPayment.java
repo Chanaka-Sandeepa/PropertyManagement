@@ -19,6 +19,8 @@ import com.example.chanaka.propertymanager.Controllers.DatabaseConnector;
 import com.example.chanaka.propertymanager.Controllers.Payment_Handler;
 import com.example.chanaka.propertymanager.Controllers.Property_Handler;
 import com.example.chanaka.propertymanager.R;
+import com.example.chanaka.propertymanager.Views.Home;
+import com.example.chanaka.propertymanager.Views.Login;
 import com.example.chanaka.propertymanager.Views.TenantHome;
 
 /**
@@ -48,6 +50,7 @@ public class TenantPayment extends android.support.v4.app.Fragment {
         spinnerType= (Spinner) view.findViewById(R.id.spinnerType);
         txtTenantAmount= (EditText) view.findViewById(R.id.txtTenantAmount);
         txtTenantPayDay =(EditText) view.findViewById(R.id.txtTenantPayDay);
+        txtTenantPayDay.setText(Home.getDate());
 
         adapter= ArrayAdapter.createFromResource(getActivity(),R.array.payment_types ,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,7 +70,7 @@ public class TenantPayment extends android.support.v4.app.Fragment {
         //set adapter to apartment text
         ArrayAdapter<String> adapterApartment;
         pHan=new Property_Handler(getActivity());
-        apartments = pHan.viewApartments();
+        apartments = pHan.viewAllApartments();
         adapterApartment=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,apartments);
         txtAutoApartment=(AutoCompleteTextView) view.findViewById(R.id.txtAutoApartment);
         txtAutoApartment.setAdapter(adapterApartment);
